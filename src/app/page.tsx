@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <MissionSection />
       <StatsSection />
-      <Steps />
+     {/* <Steps /> */}
       <TestsGrid />
       <ReportPreview />
       <Pricing />
