@@ -6,10 +6,10 @@ import { useState } from "react";
 const steps = [
   {
     stepNumber: "01",
-    title: "SATIN AL",
-    subtitle: "Test siparişinizi verin",
-    content: "Size en uygun olan genetik testi ister kendiniz, ister uzman doktorunuza danışarak satın alın. Dikkate almamız gereken bir sorun, uzman doktorunuzun bir talebi veya satın alırken yaşadığınız bir sorunu info@falcongene.com üzerinden veya Bize Ulaşın kısmından bizlere belirtebilirsiniz.",
-    labels: ["SATIN AL", "BESLENME VE GENETİK"],
+    title: "TESTİNİZİ SATIN ALIN",
+    subtitle: "İhtiyacınıza uygun testi seçin",
+    content: "Web sitemizdeki testlerimizi inceleyin, ihtiyacınıza ve merak ettiklerinize en uygun olanı seçin ve güvenli ödeme altyapımızla kolayca sipariş verin.",
+    labels: ["SATIN AL", "GENETİK TEST"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <circle cx="9" cy="21" r="1" strokeWidth="1.5"/>
@@ -20,10 +20,10 @@ const steps = [
   },
   {
     stepNumber: "02",
-    title: "NUMUNEYİ GÖNDER",
+    title: "NUMUNENİZİ GÖNDERİN",
     subtitle: "Kit gönderimi ve hazırlık",
-    content: "Sizlere gönderdiğimiz test kitlerimizin içinde bulunan broşürümüzdeki yönergeleri kullanarak tekrar paketleyiniz. Kit kutunuzun içerisinde bulunan belgeleri imzalayıp onayladıktan sonra yönergeleri izleyerek bize tekrar kargolayınız. Kargonuz anlaşmalarımız sayesinde zarar görmez ve en hızlı şekilde bize ulaşır.",
-    labels: ["DNA TESTİ", "GENOM"],
+    content: "Kit içeriğindeki basit yönergeleri izleyerek, acısız ve pratik bir yöntem olan swap çubuğu ile yapın. Örnek, DNA'nın stabil bir kaynağıdır. Hazırladığınız numuneyi, ön ödemeli ve güvenli geri gönderim paketiyle anlaşmalı kargomuza teslim edin.",
+    labels: ["NUMUNE", "GÖNDERİM"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -34,10 +34,10 @@ const steps = [
   },
   {
     stepNumber: "03",
-    title: "DİZİLİMİ",
-    subtitle: "Laboratuvar analizi",
-    content: "Numuneniz ve belgeleriniz bize ulaştıktan sonra numuneye giriş yapılır ve DNA ekstraksiyonu yapılır. Ardından üstün teknolojili anlaşmalı laboratuvarlarımız ve uzmanlarımız ile biyoinformatik teknikleri kullanılarak genom dizilimi tamamlanır. Raporlama için son çalışmalara geçilir.",
-    labels: ["İNTOLERANS", "GENETİK"],
+    title: "GENOM DİZİLİMİ (NGS TEKNOLOJİSİ)",
+    subtitle: "En ileri teknolojik analiz",
+    content: "Numuneniz son teknoloji laboratuvarımıza ulaştığında, uzmanlarımız DNA'nızı kıl kökü hücrelerinden dikkatlice ayrıştırır (ekstraksiyon) ve Yeni Nesil Dizileme (NGS) teknolojisi ile genetik kodunuzu adeta harf harf okur.",
+    labels: ["NGS", "DİZİLEME", "EKSTRAKSİYON"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path d="M6 3 Q8 6 6 9 Q4 12 6 15 Q8 18 6 21" strokeWidth="1.5" strokeLinecap="round"/>
@@ -48,10 +48,24 @@ const steps = [
   },
   {
     stepNumber: "04",
-    title: "TARAMA",
-    subtitle: "Genetik test sonuç",
-    content: "DNA, titiz kalite kontrol standartlarıyla kontrol edilir ve sekanslanır, ardından uzmanlarımız tarafından varyantlara öncelik verilir. Genlerinizdeki spesifik alanlarda oluşan varyantlara göre sizde veya çocuğunuzda bulunan genetik yatkınlıkları tarar, genetik uzmanları tarafından oluşan ekibimizle yorumlarız sizinle en hızlı ve güvenilir şekilde buluştururuz.",
-    labels: ["GENETİK TEST", "SONUÇ"],
+    title: "BİYOINFORMATİK ANALİZ",
+    subtitle: "Ham verinin bilgeliğe dönüştüğü yer",
+    content: "Bu aşama, ham verinin bilgeliğe dönüştüğü yerdir. Uzman ekibimiz, milyonlarca veri noktasını gelişmiş algoritmalarla analiz eder, bilimsel veritabanlarıyla karşılaştırır ve ham genetik veriyi sizin için anlamlı, eyleme geçirilebilir bilgilere dönüştürür.",
+    labels: ["ANALİZ", "ALGORİTMA", "VERİTABANI"],
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M14 2v6h6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M16 13H8M16 17H8M10 9H8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
+    stepNumber: "05",
+    title: "RAPORUNUZA ULAŞIN",
+    subtitle: "Güvenli online rapor sistemi",
+    content: "Analiz tamamlandığında, size özel oluşturulan güvenli bir kod ile online sistemimize giriş yaparak detaylı raporunuza ulaşırsınız. Raporunuz, hem sizin anlayabileceğiniz sadelikte hem de bir sağlık profesyonelinin değerlendirebileceği derinlikte tasarlanmıştır.",
+    labels: ["RAPOR", "GÜVENLİ ERİŞİM", "ÖNERİLER"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -70,7 +84,7 @@ export default function Steps() {
   };
 
   return (
-    <section id="how" className="relative bg-gradient-to-br from-gray-50 to-white py-20 sm:py-28">
+    <section id="how" className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-4xl px-6">
         {/* Header */}
         <motion.div 
@@ -80,11 +94,11 @@ export default function Steps() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0D1B2A] mb-4">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
             Nasıl <span className="bg-gradient-to-r from-[#1976D3] to-[#4E7CA8] bg-clip-text text-transparent">Çalışır</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Dört basit adımda genetik analiz sürecinizi keşfedin
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            Beş basit adımda genetik analiz sürecinizi keşfedin
           </p>
         </motion.div>
 
@@ -105,7 +119,7 @@ export default function Steps() {
                 className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 ${
                   openStep === index 
                     ? 'bg-gradient-to-r from-[#1976D3] to-[#4E7CA8] text-white border-transparent shadow-lg' 
-                    : 'bg-white border-gray-200 text-[#0D1B2A] hover:border-[#1976D3]/30 hover:shadow-md'
+                    : 'bg-white/5 border-white/10 text-white hover:border-white/20 hover:shadow-md'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -114,7 +128,7 @@ export default function Steps() {
                     <div className={`flex items-center justify-center w-12 h-12 rounded-xl font-bold text-lg transition-colors ${
                       openStep === index 
                         ? 'bg-white/20 text-white' 
-                        : 'bg-gray-100 text-[#1976D3]'
+                        : 'bg-white/10 text-[#D6F5E3]'
                     }`}>
                       {step.stepNumber}
                     </div>
@@ -123,7 +137,7 @@ export default function Steps() {
                     <div className={`flex items-center justify-center w-10 h-10 rounded-lg transition-colors ${
                       openStep === index 
                         ? 'text-white' 
-                        : 'text-[#1976D3]'
+                        : 'text-[#D6F5E3]'
                     }`}>
                       {step.icon}
                     </div>
@@ -132,7 +146,7 @@ export default function Steps() {
                     <div>
                       <h3 className="font-display text-xl font-bold">{step.title}</h3>
                       <p className={`text-sm mt-1 ${
-                        openStep === index ? 'text-white/80' : 'text-gray-600'
+                        openStep === index ? 'text-white/80' : 'text-white/60'
                       }`}>
                         {step.subtitle}
                       </p>
@@ -143,7 +157,7 @@ export default function Steps() {
                   <motion.div
                     animate={{ rotate: openStep === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={openStep === index ? 'text-white' : 'text-gray-400'}
+                    className={openStep === index ? 'text-white' : 'text-white/50'}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <path d="M6 9l6 6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -157,12 +171,12 @@ export default function Steps() {
                 {openStep === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
+                    animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 bg-white border border-gray-200 border-t-0 rounded-b-2xl">
+                    <div className="p-6 bg-white/5 border border-white/10 border-t-0 rounded-b-2xl">
                       <div className="max-w-3xl">
                         {/* Labels */}
                         <div className="flex flex-wrap gap-2 mb-4">
@@ -177,13 +191,13 @@ export default function Steps() {
                         </div>
                         
                         {/* Content */}
-                        <p className="text-gray-700 leading-relaxed text-lg">
+                        <p className="text-white/90 leading-relaxed text-lg">
                           {step.content}
                         </p>
 
                         {/* Special ending for last step */}
                         {index === steps.length - 1 && (
-                          <div className="mt-6 p-4 bg-gradient-to-r from-[#1976D3]/10 to-[#4E7CA8]/10 rounded-xl border border-[#1976D3]/20">
+                          <div className="mt-6 p-4 bg-gradient-to-r from-[#1976D3]/10 to-[#4E7CA8]/10 rounded-xl border border-white/10">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-gradient-to-r from-[#1976D3] to-[#4E7CA8] rounded-full flex items-center justify-center">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white">
@@ -191,7 +205,7 @@ export default function Steps() {
                                   <path d="M14 2v6h6" strokeWidth="2"/>
                                 </svg>
                               </div>
-                              <span className="font-semibold text-[#1976D3]">Rapor</span>
+                              <span className="font-semibold text-white">Rapor</span>
                             </div>
                           </div>
                         )}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{subject}} - FalconGene İletişim</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #0D1B2A 0%, #153656 50%, #2C5276 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0D1B2A;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #D6F5E3;
+            padding-bottom: 5px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .info-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4E7CA8;
+        }
+        .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #0D1B2A;
+            word-break: break-word;
+        }
+        .message-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .message-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 30px;
+            border-top: 1px solid #e9ecef;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+        .priority-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #D6F5E3 0%, #a8e6cf 100%);
+            color: #0D1B2A;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #D6F5E3 50%, transparent 100%);
+            margin: 25px 0;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">FalconGene</div>
+            <p class="subtitle">Genetik Potansiyelinizi Bilimle Keşfedin</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Title Section -->
+            <div class="section">
+                <h2 style="color: #0D1B2A; margin: 0 0 10px 0; font-size: 20px;">
+                    📧 Yeni İletişim Formu Mesajı
+                </h2>
+                <div class="priority-badge">Yeni Mesaj</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Contact Information -->
+            <div class="section">
+                <div class="section-title">👤 İletişim Bilgileri</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Ad Soyad</div>
+                        <div class="info-value">{{name}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">E-posta Adresi</div>
+                        <div class="info-value">{{email}}</div>
+                    </div>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Telefon Numarası</div>
+                        <div class="info-value">{{phone}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Mesaj Konusu</div>
+                        <div class="info-value">{{subject}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Content -->
+            <div class="section">
+                <div class="section-title">💬 Mesaj İçeriği</div>
+                <div class="message-box">
+                    <div class="message-content">{{message}}</div>
+                </div>
+            </div>
+
+            <!-- Action Note -->
+            <div class="section">
+                <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <div style="font-size: 13px; color: #856404; font-weight: 500;">
+                        ⚡ Bu mesaja en geç 24 saat içinde yanıt verilmesi önerilir.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                Bu mesaj FalconGene web sitesi iletişim formundan gönderilmiştir.<br>
+                📅 Tarih: {{date}} | 🌐 falcongene.com
+            </p>
+        </div>
+    </div>
+</body>
+</html>

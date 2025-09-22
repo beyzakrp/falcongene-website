@@ -26,7 +26,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-8 py-20 sm:py-28">
         <div className="grid lg:grid-cols-3 gap-8 items-center">
           {/* Main content - left/center */}
           <motion.div
@@ -37,23 +37,27 @@ export default function Hero() {
             className="lg:col-span-2 rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 via-white/10 to-white/5 p-8 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.25),0_0_30px_rgba(214,245,227,0.1)] ring-1 ring-white/10"
           >
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight">
-              Bilimin güveni, genetiğin gücü.
-              <span className="block text-[#D6F5E3]">FalconGene ile tanışın.</span>
+              Bilimin Güveni, Genetiğin Gücü.
+              <span className="block text-[#D6F5E3]">Geleceğinize Genlerinizle Yön Verin.</span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-[#E6E6E6] text-base sm:text-lg">
-              Güvenilir genetik testler, modern raporlama ve uzman desteği ile kişiselleştirilmiş sağlık yolculuğunuza başlayın.
+            <p className="mt-4 max-w-2xl text-[#E6E6E6] text-base sm:text-lg">
+              FalconGene, kişiselleştirilmiş sağlık yolculuğunuzda size bilimsel bir yol haritası sunar. Sadece genetik verilerinizi değil, aynı zamanda bu verilerin hayat kalitenizi nasıl en üst düzeye çıkarabileceğini de anlamanızı sağlıyoruz. En ileri Yeni Nesil Dizileme (NGS) teknolojisi, modern ve anlaşılır raporlama yaklaşımları ve uzman desteğimizle genetik potansiyelinizi A'dan Z'ye ortaya çıkarıyoruz.
             </p>
+
+           {/* <p className="mt-3 max-w-2xl text-[#E6E6E6]/90 text-sm sm:text-base">
+              Kendi genetik haritanızı çıkararak "deneme-yanılma" dönemini hayatınızdan çıkarın. Beslenme alışkanlıklarınızı optimize ederek enerjinizi artırın, spor performansınızı zirveye taşıyarak hedeflerinize daha hızlı ulaşın, cilt sağlığınızı genetik yapınıza en uygun şekilde koruyarak yıllara meydan okuyun ve yaşam kalitenizi düşüren gıda intoleranslarınızı net bir şekilde keşfedin.
+            </p>*/}
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link
-                href="#pricing"
+                href="/klinikler"
                 className="inline-flex items-center justify-center rounded-full px-6 py-3 text-[#0D1B2A] bg-[#D6F5E3] font-semibold hover:shadow-[0_0_24px_4px_rgba(214,245,227,0.3)] transition-shadow"
               >
                 Kiti Satın Al
               </Link>
               <Link
-                href="#tests"
+                href="/testler"
                 className="inline-flex items-center justify-center rounded-full px-6 py-3 border border-white/30 text-white hover:bg-white/10"
               >
                 Testleri Keşfet
@@ -78,8 +82,8 @@ export default function Hero() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">%100</div>
-                  <div className="text-sm text-white/70">Mutlu Müşteriler</div>
+                  <div className="text-2xl font-bold text-white">%99.8</div>
+                  <div className="text-sm text-white/70">Doğruluk Oranı</div>
                 </div>
               </div>
             </motion.div>
@@ -99,7 +103,7 @@ export default function Hero() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">24 Saat</div>
+                  <div className="text-2xl font-bold text-white">7-14 Gün</div>
                   <div className="text-sm text-white/70">Hızlı Sonuç</div>
                 </div>
               </div>
@@ -116,12 +120,12 @@ export default function Hero() {
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D6F5E3]/20">
                   <svg className="h-6 w-6 text-[#D6F5E3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7 7h10a2 2 0 012 2v6a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">%99.8</div>
-                  <div className="text-sm text-white/70">Doğruluk Oranı</div>
+                  <div className="text-2xl font-bold text-white">10+</div>
+                  <div className="text-sm text-white/70">Test Çeşidi</div>
                 </div>
               </div>
             </motion.div>

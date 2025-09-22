@@ -3,20 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Testler", href: "#tests" },
-  { label: "Nasıl Çalışır", href: "#how" },
-  { label: "Klinikler", href: "#pricing" },
-  { label: "Blog", href: "#blog" },
-  { label: "İletişim", href: "#footer" },
+  { label: "Anasayfa", href: "/" },
+  { label: "Testler", href: "/testler" },
+  { label: "Nasıl Çalışır", href: "/nasil-calisir" },
+  { label: "Klinikler", href: "/klinikler" },
+  { label: "Blog", href: "/blog" },
+  { label: "SSS", href: "/sss" },
+  { label: "İletişim", href: "/iletisim" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -42,21 +45,26 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Left: Logo */}
-            <Link href="#home" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <Image src="/logo-falcongene.svg" alt="FalconGene" width={140} height={32} className="h-6 w-auto" />
             </Link>
 
             {/* Center: Navigation */}
             <nav className="hidden md:flex items-center gap-2">
               {navItems.map((item) => (
-                <NavDNAButton key={item.label} href={item.href} label={item.label} />
+                <NavDNAButton 
+                  key={item.label} 
+                  href={item.href} 
+                  label={item.label} 
+                  isActive={pathname === item.href}
+                />
               ))}
             </nav>
 
             {/* Right: CTA */}
             <div className="hidden md:flex items-center">
               <Link
-                href="#pricing"
+                href="/klinikler"
                 className="rounded-full px-4 py-2 text-sm font-semibold text-[#0D1B2A] bg-[#D6F5E3] shadow-[0_0_0_0_rgba(214,245,227,0.6)] hover:shadow-[0_0_24px_4px_rgba(214,245,227,0.35)] transition-shadow"
               >
                 Kiti Satın Al
@@ -91,7 +99,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="#pricing"
+                href="/klinikler"
                 className="mt-2 rounded-full px-4 py-2 text-sm font-semibold text-[#0D1B2A] bg-[#D6F5E3]"
                 onClick={() => setMenuOpen(false)}
               >
@@ -105,14 +113,22 @@ export default function Navbar() {
   );
 }
 
-function NavDNAButton({ href, label }: { href: string; label: string }) {
+function NavDNAButton({ href, label, isActive }: { href: string; label: string; isActive?: boolean }) {
   const id = useId();
   return (
     <Link
       href={href}
-      className="group relative overflow-hidden rounded-full px-3 py-2 text-sm text-white/80 transition-colors hover:text-white"
+      className={`group relative overflow-hidden rounded-full px-3 py-2 text-sm transition-colors ${
+        isActive 
+          ? 'text-[#D6F5E3] bg-[#D6F5E3]/10 border border-[#D6F5E3]/30' 
+          : 'text-white/80 hover:text-white'
+      }`}
     >
       <span className="relative z-10">{label}</span>
+      {/* Active state glow */}
+      {isActive && (
+        <span className="absolute inset-0 rounded-full bg-[#D6F5E3]/5 ring-1 ring-[#D6F5E3]/20" />
+      )}
       {/* DNA animated background on hover */}
       {/*
       <svg
@@ -167,8 +183,16 @@ function NavDNAButton({ href, label }: { href: string; label: string }) {
         </svg>
       </span>
       {/* subtle glow */}
-      <span className="absolute inset-0 rounded-full bg-[#D6F5E3]/0 group-hover:bg-[#D6F5E3]/10 transition-colors" />
-      <span className="absolute inset-0 rounded-full ring-0 ring-[#D6F5E3]/0 group-hover:ring-1 transition-[ring]" />
+      <span className={`absolute inset-0 rounded-full transition-colors ${
+        isActive 
+          ? 'bg-[#D6F5E3]/5' 
+          : 'bg-[#D6F5E3]/0 group-hover:bg-[#D6F5E3]/10'
+      }`} />
+      <span className={`absolute inset-0 rounded-full transition-[ring] ${
+        isActive 
+          ? 'ring-1 ring-[#D6F5E3]/30' 
+          : 'ring-0 ring-[#D6F5E3]/0 group-hover:ring-1'
+      }`} />
     </Link>
   );
 }

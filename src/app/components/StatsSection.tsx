@@ -51,47 +51,48 @@ function StatIcon({ type, className }: { type: string; className?: string }) {
 
 const stats = [
   {
-    value: 10,
-    label: "FARKLI TEST",
+    value: 99.8,
+    label: "DOĞRULUK ORANI",
+    prefix: "%",
     suffix: "",
-    iconType: "dna",
+    iconType: "chart",
     color: "from-[#1976D3] to-[#115496]",
     bgGlow: "shadow-[0_0_30px_rgba(112,146,154,0.4)]",
     accentColor: "#70929A",
+    image: "/happy-customer.jpg",
+  },
+  {
+    value: 10,
+    label: "FARKLI TEST ÇEŞİDİ",
+    prefix: "",
+    suffix: "+",
+    iconType: "dna",
+    color: "from-[#0C4072] to-[#08294A]",
+    bgGlow: "shadow-[0_0_30px_rgba(78,124,168,0.4)]",
+    accentColor: "#4E7CA8",
     image: "/test.jpg",
   },
   {
     value: 150,
-    label: "FARKLI GEN",
-    prefix: "~",
-    suffix: "",
+    label: "GEN ANALİZİ",
+    prefix: "",
+    suffix: "+",
     iconType: "microscope",
-    color: "from-[#0C4072] to-[#08294A]",
-    bgGlow: "shadow-[0_0_30px_rgba(78,124,168,0.4)]",
-    accentColor: "#4E7CA8",
+    color: "from-[#2C5276] to-[#153656]",
+    bgGlow: "shadow-[0_0_30px_rgba(44,82,118,0.4)]",
+    accentColor: "#2C5276",
     image: "/gene.jpg",
   },
   {
     value: 200,
-    label: "FARKLI VARYANT",
+    label: "VARYANT ANALİZİ",
     prefix: "",
     suffix: "+",
     iconType: "molecule",
-    color: "from-[#2C5276] to-[#153656]",
-    bgGlow: "shadow-[0_0_30px_rgba(44,82,118,0.4)]",
-    accentColor: "#2C5276",
-    image: "/variant.jpg",
-  },
-  {
-    value: 99,
-    label: "BAŞARI ORANI",
-    prefix: "%",
-    suffix: "",
-    iconType: "chart",
     color: "from-[#153656] to-[#072441]",
     bgGlow: "shadow-[0_0_30px_rgba(21,54,86,0.4)]",
     accentColor: "#153656",
-    image: "/happy-customer.jpg",
+    image: "/variant.jpg",
   },
 ];
 
@@ -206,9 +207,9 @@ export default function StatsSection() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFFFFF] leading-tight max-w-4xl mx-auto mb-6"
             >
-              Rakamlarla{" "}
+              FalconGene&apos;i{" "}
               <span className="bg-gradient-to-r from-[#1976D3] via-[#4E7CA8] to-[#2C5276] bg-clip-text text-transparent">
-                FalconGene&apos;i
+                Rakamlarla
               </span>
               <br />
               <span className="text-[#FFFFFF]">Keşfedin</span>
@@ -221,8 +222,7 @@ export default function StatsSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg text-white mb-8 leading-relaxed"
           >
-              Her rakam, bilimsel mükemmellik ve teknolojik üstünlüğümüzün kanıtıdır. 
-              Güvenilir genetik test çözümlerimizle geleceği şekillendiriyoruz.
+              Bilimsel mükemmelliğimizin ve teknolojik üstünlüğümüzün kanıtı olan bu rakamlarla tanışın. Her bir rakam, size sunduğumuz hizmetin arkasındaki gücü temsil eder.
           </motion.p>
 
             <motion.div
@@ -232,12 +232,8 @@ export default function StatsSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <button className="px-6 py-3 bg-[#1976D3] text-white rounded-full font-semibold hover:bg-[#1976D3] transition-colors shadow-lg hover:shadow-xl">
-                Testleri İncele
-              </button>
-              <button className="px-6 py-3 border border-gray-300 text-white-700 rounded-full font-semibold hover:bg-gray-50 transition-colors">
-                Daha Fazla Bilgi
-              </button>
+              <a href="/testler" className="px-6 py-3 bg-[#1976D3] text-white rounded-full font-semibold hover:bg-[#1976D3] transition-colors shadow-lg hover:shadow-xl">Testleri İncele</a>
+              <a href="/nasil-calisir" className="px-6 py-3 border border-gray-300 text-white rounded-full font-semibold hover:bg-gray-50/10 transition-colors">Daha Fazla Bilgi</a>
             </motion.div>
           </div>
 

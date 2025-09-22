@@ -78,10 +78,10 @@ export default function MissionSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#0D1B2A] leading-tight max-w-4xl mx-auto"
           >
-            FalconGene&apos;de, genetiğinizin sadece{" "}
+            Neden FalconGene?{" "}
             <span className="relative">
               <span className="bg-gradient-to-r from-[#1976D3] to-[#4E7CA8] bg-clip-text text-transparent">
-                size değil
+                Genetiğe Ayrıcalıklı
               </span>
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -91,10 +91,10 @@ export default function MissionSection() {
                 className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#153656] to-[#2C5276]"
               />
             </span>
-            , size{" "}
+            {" "}ve{" "}
             <span className="relative">
               <span className="bg-gradient-to-r from-[#1976D3] to-[#4E7CA8] bg-clip-text text-transparent">
-                uygun
+                Bilimsel Bir Yaklaşım
               </span>
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -103,8 +103,7 @@ export default function MissionSection() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#153656] to-[#2C5276]"
               />
-            </span>{" "}
-            çalışması gerektiğine inanıyoruz.
+            </span>
           </motion.h2>
 
           <motion.p
@@ -114,7 +113,7 @@ export default function MissionSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-lg text-[#0D1B2A]/70 max-w-3xl mx-auto leading-relaxed"
           >
-            Her genetik profil benzersizdir ve bu nedenle her birey için özelleştirilmiş sağlık, beslenme ve yaşam tarzı önerileri sunmak amacıyla gerçek sonuçlar veren testler geliştiriyoruz.
+            FalconGene, genetik test hizmetlerinde kalite, hız ve kapsamlılığı bir araya getirerek fark yaratır. Bizim için bu üç ilke, sadece birer pazarlama vaadi değil, tüm operasyonumuzun temelini oluşturan standartlardır. Sürecin her aşamasında en son teknolojiyi, detaylı biyoinformatik analizleri ve uluslararası standartları temel alıyoruz.
           </motion.p>
 
           {/* CTA */}

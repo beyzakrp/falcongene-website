@@ -16,17 +16,18 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white">Hızlı Linkler</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="#home" className="hover:underline">Home</Link></li>
-              <li><Link href="#tests" className="hover:underline">Testler</Link></li>
-              <li><Link href="#how" className="hover:underline">Nasıl Çalışır</Link></li>
-              <li><Link href="#pricing" className="hover:underline">Fiyatlandırma</Link></li>
+              <li><Link href="/" className="hover:underline">Home</Link></li>
+              <li><Link href="/testler" className="hover:underline">Testler</Link></li>
+              <li><Link href="/nasil-calisir" className="hover:underline">Nasıl Çalışır</Link></li>
+              <li><Link href="/klinikler" className="hover:underline">Fiyatlandırma</Link></li>
+              <li><Link href="/sss" className="hover:underline">SSS</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold text-white">Kaynaklar</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="#blog" className="hover:underline">Blog</Link></li>
-              <li><Link href="#contact" className="hover:underline">İletişim</Link></li>
+              <li><Link href="/blog" className="hover:underline">Blog</Link></li>
+              <li><Link href="/iletisim" className="hover:underline">İletişim</Link></li>
               <li><Link href="#" className="hover:underline">Gizlilik</Link></li>
               <li><Link href="#" className="hover:underline">KVKK</Link></li>
             </ul>
