@@ -42,7 +42,7 @@ export default function Hero() {
             </h1>
 
             <p className="mt-4 max-w-2xl text-[#E6E6E6] text-base sm:text-lg">
-              FalconGene, kişiselleştirilmiş sağlık yolculuğunuzda size bilimsel bir yol haritası sunar. Sadece genetik verilerinizi değil, aynı zamanda bu verilerin hayat kalitenizi nasıl en üst düzeye çıkarabileceğini de anlamanızı sağlıyoruz. En ileri Yeni Nesil Dizileme (NGS) teknolojisi, modern ve anlaşılır raporlama yaklaşımları ve uzman desteğimizle genetik potansiyelinizi A'dan Z'ye ortaya çıkarıyoruz.
+              FalconGene, kişiselleştirilmiş sağlık yolculuğunuzda size bilimsel bir yol haritası sunar. Sadece genetik verilerinizi değil, aynı zamanda bu verilerin hayat kalitenizi nasıl en üst düzeye çıkarabileceğini de anlamanızı sağlıyoruz. En ileri Yeni Nesil Dizileme (NGS) teknolojisi, modern ve anlaşılır raporlama yaklaşımları ve uzman desteğimizle genetik potansiyelinizi A&rsquo;dan Z&rsquo;ye ortaya çıkarıyoruz.
             </p>
 
            {/* <p className="mt-3 max-w-2xl text-[#E6E6E6]/90 text-sm sm:text-base">

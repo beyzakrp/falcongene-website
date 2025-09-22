@@ -94,7 +94,7 @@ export default function NasilCalisirPage() {
 
             <div className="mt-12 p-6 bg-gradient-to-r from-[#1976D3]/10 to-[#4E7CA8]/10 rounded-xl border border-white/10">
               <p className="text-white/90 text-center font-medium">
-                Bu üstün teknoloji, "En Kapsamlı" ve "En Hızlı" iddialarımızın bilimsel temelini oluşturur ve size en güvenilir, en eyleme geçirilebilir sonuçları sunmamızı garanti eder.
+                Bu üstün teknoloji, &quot;En Kapsamlı&quot; ve &quot;En Hızlı&quot; iddialarımızın bilimsel temelini oluşturur ve size en güvenilir, en eyleme geçirilebilir sonuçları sunmamızı garanti eder.
               </p>
             </div>
           </motion.div>
