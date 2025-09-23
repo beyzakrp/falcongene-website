@@ -121,33 +121,39 @@ export default function NasilCalisirPage() {
                   Teknolojimiz
                 </div>
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
-                  NGS ile Bilimsel Güç ve Güvenilirlik
+                  Bilimsel Güç ve Güvenilirlik: Sanger & NGS Teknolojileri
                 </h2>
-                <p className="text-white/80 text-lg leading-relaxed mb-6">
-                  FalconGene olarak, geleneksel ve yavaş Sanger dizileme yönteminin aksine, genetik analizde altın standart kabul edilen Yeni Nesil Dizileme (NGS) teknolojisini kullanıyoruz.
+                <p className="text-white/70 text-lg leading-relaxed mb-6">
+FalconGene olarak genetik analizlerimizde hem Sanger sekanslama hem de Yeni Nesil Dizileme (NGS) teknolojilerini kullanıyoruz. İki yöntem de birbirini tamamlayıcı niteliktedir ve birlikte kullanıldığında çok daha güçlü, güvenilir ve kapsamlı sonuçlar elde edilmesini sağlar.                
                 </p>
                 <p className="text-white/70 text-base leading-relaxed mb-8">
-                  Bu seçimi bir benzetmeyle açıklayabiliriz: Geleneksel yöntem, devasa bir kütüphanedeki tek bir kitabı kelime kelime okumak gibidir. Yavaş ve kısıtlıdır. NGS teknolojisi ise, kütüphanedeki tüm kitapları aynı anda binlerce kişiye okutup, hataları (genetik varyantları) karşılaştırarak bulmaya benzer.
+Sanger sekanslama, uzun yıllar boyunca genetik araştırmalarda “altın standart” kabul edilen geleneksel bir yöntemdir. Tek bir DNA bölgesini yüksek doğrulukla okumak için idealdir. Bunu, devasa bir kütüphanedeki tek bir kitabı satır satır okumaya benzetebiliriz. Yavaş ama titizdir, özellikle belirli gen bölgelerinin doğrulama analizlerinde vazgeçilmezdir.
                 </p>
+                <p className="text-white/70 text-base leading-relaxed mb-8">
+NGS teknolojisi ise, modern biyoteknolojinin sunduğu en güçlü çözümlerden biridir. Aynı anda yüzlerce, hatta binlerce geni analiz ederek kapsamlı bir bakış açısı sunar. Bu yöntem, kütüphanedeki tüm kitapları aynı anda binlerce kişiye okutmaya benzer. Böylece genetik varyantlar çok daha hızlı, kapsamlı ve yüksek doğrulukla tespit edilir.                
+</p>
+ <p className="text-white/70 text-base leading-relaxed mb-8">
+Bu iki teknolojiyi birlikte kullanarak, hem en güvenilir doğrulamaları hem de en geniş kapsamlı genetik analizleri garanti ediyoruz. Böylece size yalnızca bilimsel açıdan güçlü değil, aynı zamanda güvenilir ve eyleme geçirilebilir sonuçlar sunuyoruz.
+</p>
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white mb-6">NGS Teknolojisinin Avantajları:</h3>
+                <h3 className="text-2xl font-bold text-white mb-6">FalconGene’in Sağladığı Avantajlar:</h3>
                 <div className="space-y-4">
                   {[
                     {
                       title: "Daha Kapsamlı",
-                      desc: "Tek seferde yüzlerce, hatta binlerce geni analiz ederek çok daha geniş ve bütüncül bir perspektif sunar.",
+                      desc: "Sanger sekanslama ile belirli bölgelerde yüksek doğruluk, NGS ile tüm gen setlerinde geniş bir analiz sağlıyoruz.",
                       icon: "🔬"
                     },
                     {
                       title: "Daha Hızlı",
-                      desc: "Kitlesel paralel dizileme yeteneği sayesinde sonuçlar günler içinde hazır olur.",
+                      desc: "NGS’nin kitlesel paralel dizileme gücü sayesinde sonuçlar günler içinde hazır olur.",
                       icon: "⚡"
                     },
                     {
                       title: "Daha Hassas",
-                      desc: "Düşük seviyedeki genetik varyantları bile %99.8'in üzerinde bir doğrulukla tespit eder.",
+                      desc: "Düşük seviyedeki genetik varyantlar bile %99.8’in üzerinde doğrulukla saptanır.",
                       icon: "🎯"
                     }
                   ].map((advantage, index) => (

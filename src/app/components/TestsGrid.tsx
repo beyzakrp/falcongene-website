@@ -56,7 +56,7 @@ const tests = [
   {
     id: "intolerans",
     title: "Gıda İntolerans Testi",
-    subtitle: "IgG Hassasiyet Analizi",
+    subtitle: "Besin Duyarlılık Haritası",
     description: "400+ gıda ve çevresel faktöre karşı gecikmeli tip hassasiyetlerinizi tespit edin.",
     imageUrl: "https://images.unsplash.com/photo-1676291920753-dd019397927a?q=80&w=2342&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     color: "from-orange-500 to-red-600", 

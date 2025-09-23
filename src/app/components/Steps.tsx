@@ -34,9 +34,9 @@ const steps = [
   },
   {
     stepNumber: "03",
-    title: "GENOM DİZİLİMİ (NGS TEKNOLOJİSİ)",
+    title: "GENOM DİZİLİMİ",
     subtitle: "En ileri teknolojik analiz",
-    content: "Numuneniz son teknoloji laboratuvarımıza ulaştığında, uzmanlarımız DNA'nızı kıl kökü hücrelerinden dikkatlice ayrıştırır (ekstraksiyon) ve Yeni Nesil Dizileme (NGS) teknolojisi ile genetik kodunuzu adeta harf harf okur.",
+    content: "Numuneniz son teknoloji laboratuvarlarımıza ulaştığında, uzmanlarımız DNA’nızı bukkal sürüntünüzden dikkatlice ayrıştırır (ekstraksiyon). Yeni Nesil Dizileme (NGS) ve Sanger Sekans teknolojileri ile genetik kodunuzu adeta harf harf okur.",
     labels: ["NGS", "DİZİLEME", "EKSTRAKSİYON"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -50,7 +50,7 @@ const steps = [
     stepNumber: "04",
     title: "BİYOINFORMATİK ANALİZ",
     subtitle: "Ham verinin bilgeliğe dönüştüğü yer",
-    content: "Bu aşama, ham verinin bilgeliğe dönüştüğü yerdir. Uzman ekibimiz, milyonlarca veri noktasını gelişmiş algoritmalarla analiz eder, bilimsel veritabanlarıyla karşılaştırır ve ham genetik veriyi sizin için anlamlı, eyleme geçirilebilir bilgilere dönüştürür.",
+    content: "Bu aşama, ham verinin bilgeliğe dönüştüğü yerdir. Uzman ekibimiz, milyonlarca genetik datayı gelişmiş algoritmalarla analiz eder, bilimsel veritabanlarıyla (GWAS) karşılaştırır ve ham genetik veriyi sizin için anlamlı, eyleme geçirilebilir bilgilere dönüştürür.",
     labels: ["ANALİZ", "ALGORİTMA", "VERİTABANI"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">

@@ -60,16 +60,16 @@ export default function TestlerPage() {
       id: "intolerans",
       title: "Gıda İntolerans Testi",
       subtitle: "Şişkinlik ve Sindirim Sorunlarınıza Bilimsel Çözüm",
-      desc: "Farkında olmadan tükettiğiniz bazı gıdalar, şişkinlik, yorgunluk, beyin sisi, eklem ağrıları ve cilt sorunları gibi kronik rahatsızlıklara yol açabilir. Bu test, hayatı tehdit eden gıda alerjilerinden (IgE) farklı olarak, yaşam kalitenizi düşüren gecikmeli tip gıda hassasiyetlerinizi (IgG) ortaya çıkarır.",
+      desc: "Farkında olmadan tükettiğiniz bazı gıdalar, şişkinlik, yorgunluk, beyin sisi, eklem ağrıları ve cilt sorunları gibi kronik rahatsızlıklara yol açabilir. Bu test, hayatı tehdit eden gıda alerjilerinden farklı olarak, yaşam kalitenizi düşüren gecikmeli tip gıda hassasiyetlerinizi ortaya çıkarır.",
       color: "from-orange-500 to-red-600",
       bgColor: "bg-orange-50",
       borderColor: "border-orange-200",
       bullets: [
-        "400+ Gıda ve Katkı Maddesine Karşı IgG Tepkisi: İşlenmiş gıdalardaki gizli içerikler de dahil olmak üzere, vücudunuzun hangi besinlere karşı savunma mekanizması (antikor) ürettiğini kapsamlı bir şekilde tarar.",
+        "400+ Gıda ve Katkı Maddesine Karşı Biyorezonans Tepkisi: İşlenmiş gıdalardaki gizli içerikler de dahil olmak üzere, vücudunuzun hangi besinlere karşı inflamasyon ve intolerans yanıtı geliştirdiğini kapsamlı bir şekilde tarar.",
         "Tüm Besin Grupları: Süt ürünleri, tahıllar, etler, sebzeler, meyveler, kuruyemişler, baharatlar ve daha fazlası detaylı olarak analiz edilir.",
         "Çevresel İntoleranslar: Sadece gıdalar değil, aynı zamanda metal, toz ve yün gibi günlük hayatta maruz kaldığınız çevresel faktörlere karşı hassasiyetlerinizi de tespit edebilir."
       ],
-      expertSupport: "Test sonuçlarınızla birlikte, intoleranslarınıza uygun bir eliminasyon ve rotasyon diyeti oluşturmak için bir seans ücretsiz uzman diyetisyen danışmanlığı hediye! Bu danışmanlık, sonuçları yorumlamanıza ve hayatınıza kolayca adapte etmenize yardımcı olur."
+      expertSupport: "Birkaç tutam saç veya kıl örneği ile numune alım kolaylığı! Test sonuçlarınızla birlikte, intoleranslarınıza uygun bir eliminasyon ve rotasyon diyeti oluşturmak için bir seans ücretsiz uzman diyetisyen danışmanlığı hediye! Bu danışmanlık, sonuçları yorumlamanıza ve hayatınıza kolayca adapte etmenize yardımcı olur.",
     }
   ]), []);
 
