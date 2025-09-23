@@ -36,8 +36,9 @@ export default function ForgotPasswordPage() {
       await sendPasswordResetEmail(auth, email);
       setEmailSent(true);
       setMessage("Şifre sıfırlama bağlantısı email adresinize gönderildi.");
-    } catch (error: any) {
-      setError(getErrorMessage(error.code));
+    } catch (error: unknown) {
+      const errorCode = error && typeof error === 'object' && 'code' in error ? (error as any).code : 'unknown';
+      setError(getErrorMessage(errorCode));
     } finally {
       setLoading(false);
     }

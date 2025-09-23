@@ -107,7 +107,7 @@ export default function CompleteProfilePage() {
             router.push("/");
             return;
           }
-        } catch (error) {
+        } catch (_error) {
           console.log("No existing profile found, continue with form");
         }
       }
@@ -192,7 +192,7 @@ export default function CompleteProfilePage() {
       } else {
         setError("Profil oluşturulurken bir hata oluştu");
       }
-    } catch (error) {
+    } catch (_error) {
       setError("Beklenmeyen bir hata oluştu");
     } finally {
       setLoading(false);

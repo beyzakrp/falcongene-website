@@ -72,8 +72,9 @@ export default function AuthPage() {
         await signInWithEmailAndPassword(auth, email, password);
         router.push("/");
       }
-    } catch (error: any) {
-      setError(getErrorMessage(error.code));
+    } catch (error: unknown) {
+      const errorCode = error && typeof error === 'object' && 'code' in error ? (error as any).code : 'unknown';
+      setError(getErrorMessage(errorCode));
     } finally {
       setLoading(false);
     }
@@ -95,8 +96,9 @@ export default function AuthPage() {
       } else {
         router.push("/");
       }
-    } catch (error: any) {
-      setError(getErrorMessage(error.code));
+    } catch (error: unknown) {
+      const errorCode = error && typeof error === 'object' && 'code' in error ? (error as any).code : 'unknown';
+      setError(getErrorMessage(errorCode));
     } finally {
       setLoading(false);
     }

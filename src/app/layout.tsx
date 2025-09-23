@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import FlowingLines from "./components/FlowingLines";
 import { FirebaseProvider } from "../lib/FirebaseProvider";
 import { Inter, Space_Grotesk } from "next/font/google";
 import ConditionalLayout from "./components/ConditionalLayout";
