@@ -31,17 +31,18 @@ export default function ProfilePage() {
         try {
           const result = await UserService.getUserProfile(user.uid);
           if (result.success && result.data) {
+            const userData = result.data as any; // Type assertion for now
             setProfile({
-              firstName: result.data.firstName || "",
-              lastName: result.data.lastName || "",
-              email: result.data.email || user.email || "",
-              phone: result.data.phone || "",
-              birthDate: result.data.birthDate || "",
-              gender: result.data.gender || "",
-              height: result.data.height || 0,
-              weight: result.data.weight || 0,
-              chronicDiseases: result.data.chronicDiseases ? result.data.chronicDiseases.split(", ").filter(Boolean) : [],
-              geneticDiagnoses: result.data.geneticDiagnoses ? result.data.geneticDiagnoses.split(", ").filter(Boolean) : []
+              firstName: userData.firstName || "",
+              lastName: userData.lastName || "",
+              email: userData.email || user.email || "",
+              phone: userData.phone || "",
+              birthDate: userData.birthDate || "",
+              gender: userData.gender || "",
+              height: userData.height || 0,
+              weight: userData.weight || 0,
+              chronicDiseases: userData.chronicDiseases ? userData.chronicDiseases.split(", ").filter(Boolean) : [],
+              geneticDiagnoses: userData.geneticDiagnoses ? userData.geneticDiagnoses.split(", ").filter(Boolean) : []
             });
           } else {
             // Default profile if not found
