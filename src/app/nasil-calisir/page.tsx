@@ -132,9 +132,7 @@ Sanger sekanslama, uzun yıllar boyunca genetik araştırmalarda “altın stand
                 <p className="text-white/70 text-base leading-relaxed mb-8">
 NGS teknolojisi ise, modern biyoteknolojinin sunduğu en güçlü çözümlerden biridir. Aynı anda yüzlerce, hatta binlerce geni analiz ederek kapsamlı bir bakış açısı sunar. Bu yöntem, kütüphanedeki tüm kitapları aynı anda binlerce kişiye okutmaya benzer. Böylece genetik varyantlar çok daha hızlı, kapsamlı ve yüksek doğrulukla tespit edilir.                
 </p>
- <p className="text-white/70 text-base leading-relaxed mb-8">
-Bu iki teknolojiyi birlikte kullanarak, hem en güvenilir doğrulamaları hem de en geniş kapsamlı genetik analizleri garanti ediyoruz. Böylece size yalnızca bilimsel açıdan güçlü değil, aynı zamanda güvenilir ve eyleme geçirilebilir sonuçlar sunuyoruz.
-</p>
+
               </div>
 
               <div className="space-y-6">
@@ -178,7 +176,7 @@ Bu iki teknolojiyi birlikte kullanarak, hem en güvenilir doğrulamaları hem de
 
             <div className="mt-12 p-6 bg-gradient-to-r from-[#1976D3]/10 to-[#4E7CA8]/10 rounded-xl border border-white/10">
               <p className="text-white/90 text-center font-medium">
-                Bu üstün teknoloji, &quot;En Kapsamlı&quot; ve &quot;En Hızlı&quot; iddialarımızın bilimsel temelini oluşturur ve size en güvenilir, en eyleme geçirilebilir sonuçları sunmamızı garanti eder.
+Bu iki teknolojiyi birlikte kullanarak, hem en güvenilir doğrulamaları hem de en geniş kapsamlı genetik analizleri garanti ediyoruz. Böylece size yalnızca bilimsel açıdan güçlü değil, aynı zamanda güvenilir ve eyleme geçirilebilir sonuçlar sunuyoruz.
               </p>
             </div>
           </motion.div>
