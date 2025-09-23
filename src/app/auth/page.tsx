@@ -85,8 +85,18 @@ export default function AuthPage() {
     setError("");
     
     try {
+      console.log('Starting Google Auth...');
       const provider = new GoogleAuthProvider();
+      
+      // Add additional scopes if needed
+      provider.addScope('email');
+      provider.addScope('profile');
+      
+      console.log('Firebase Auth Domain:', process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN);
+      console.log('Current Domain:', window.location.hostname);
+      
       const result = await signInWithPopup(auth, provider);
+      console.log('Google Auth Success:', result.user.email);
       
       // Check if this is a new user
       const isNewUser = result.user.metadata.creationTime === result.user.metadata.lastSignInTime;
@@ -97,8 +107,12 @@ export default function AuthPage() {
         router.push("/");
       }
     } catch (error: unknown) {
+      console.error('Google Auth Error:', error);
       const errorCode = error && typeof error === 'object' && 'code' in error ? (error as any).code : 'unknown';
-      setError(getErrorMessage(errorCode));
+      const errorMessage = error && typeof error === 'object' && 'message' in error ? (error as any).message : 'Unknown error';
+      console.error('Error Code:', errorCode);
+      console.error('Error Message:', errorMessage);
+      setError(getGoogleAuthErrorMessage(errorCode));
     } finally {
       setLoading(false);
     }
@@ -118,6 +132,29 @@ export default function AuthPage() {
         return "Hatalı şifre";
       default:
         return "Bir hata oluştu, lütfen tekrar deneyin";
+    }
+  };
+
+  const getGoogleAuthErrorMessage = (errorCode: string) => {
+    switch (errorCode) {
+      case "auth/popup-closed-by-user":
+        return "Google giriş penceresi kapatıldı";
+      case "auth/popup-blocked":
+        return "Popup engellenmiş. Lütfen popup engelleyicisini devre dışı bırakın";
+      case "auth/unauthorized-domain":
+        return "Bu domain Google Auth için yetkilendirilmemiş";
+      case "auth/cancelled-popup-request":
+        return "Google giriş işlemi iptal edildi";
+      case "auth/network-request-failed":
+        return "Ağ bağlantı hatası. İnternet bağlantınızı kontrol edin";
+      case "auth/too-many-requests":
+        return "Çok fazla istek. Lütfen daha sonra tekrar deneyin";
+      case "auth/user-disabled":
+        return "Bu kullanıcı hesabı devre dışı bırakılmış";
+      case "auth/account-exists-with-different-credential":
+        return "Bu email adresi farklı bir giriş yöntemi ile kayıtlı";
+      default:
+        return `Google giriş hatası: ${errorCode}. Lütfen tekrar deneyin veya email ile giriş yapmayı deneyin`;
     }
   };
 
