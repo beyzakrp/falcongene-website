@@ -68,7 +68,6 @@ export default function ForgotPasswordPage() {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-slate-900/85 to-indigo-900/80 backdrop-blur-sm" />
       
       <div className="relative z-10 w-full max-w-md">
-      <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
