@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Pricing() {
@@ -88,29 +89,39 @@ export default function Pricing() {
             Güvenli Ödeme Seçenekleri
           </h3>
           <div className="flex flex-wrap justify-center items-center gap-4 opacity-80">
-            <img 
+            <Image 
               src="/payment-iyzico.svg" 
               alt="İyzico ile Öde" 
+              width={60}
+              height={40}
               className="h-10 w-auto bg-white rounded-lg p-1 hover:scale-105 transition-transform"
             />
-            <img 
+            <Image 
               src="/payment-visa.svg" 
               alt="Visa" 
+              width={60}
+              height={40}
               className="h-10 w-auto bg-white rounded-lg p-1 hover:scale-105 transition-transform"
             />
-            <img 
+            <Image 
               src="/payment-mastercard.svg" 
               alt="Mastercard" 
+              width={60}
+              height={40}
               className="h-10 w-auto bg-white rounded-lg p-1 hover:scale-105 transition-transform"
             />
-            <img 
+            <Image 
               src="/payment-amex.svg" 
               alt="American Express" 
+              width={60}
+              height={40}
               className="h-10 w-auto bg-white rounded-lg p-1 hover:scale-105 transition-transform"
             />
-            <img 
+            <Image 
               src="/payment-troy.svg" 
               alt="Troy" 
+              width={60}
+              height={40}
               className="h-10 w-auto bg-white rounded-lg p-1 hover:scale-105 transition-transform"
             />
           </div>
