@@ -1,0 +1,8 @@
+<svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="60" height="38" rx="6" fill="white"/>
+<rect width="60" height="38" rx="6" stroke="#E5E7EB"/>
+<!-- American Express logo -->
+<rect x="8" y="12" width="44" height="14" rx="2" fill="#006FCF"/>
+<text x="12" y="21" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="white">AMERICAN</text>
+<text x="12" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="white">EXPRESS</text>
+</svg>

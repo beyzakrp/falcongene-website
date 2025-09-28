@@ -1,0 +1,9 @@
+<svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="60" height="38" rx="6" fill="white"/>
+<rect width="60" height="38" rx="6" stroke="#E5E7EB"/>
+<!-- Mastercard logo -->
+<circle cx="22" cy="19" r="8" fill="#EB001B"/>
+<circle cx="30" cy="19" r="8" fill="#F79E1B"/>
+<path d="M26 13C27.6569 13 29 14.3431 29 16V22C29 23.6569 27.6569 25 26 25C24.3431 25 23 23.6569 23 22V16C23 14.3431 24.3431 13 26 13Z" fill="#FF5F00"/>
+<text x="38" y="22" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#000">mastercard</text>
+</svg>

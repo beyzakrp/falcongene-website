@@ -1,0 +1,9 @@
+<svg width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="60" height="38" rx="6" fill="white"/>
+<rect width="60" height="38" rx="6" stroke="#E5E7EB"/>
+<!-- İyzico logo -->
+<path d="M12 19C12 15.6863 14.6863 13 18 13C21.3137 13 24 15.6863 24 19C24 22.3137 21.3137 25 18 25C14.6863 25 12 22.3137 12 19Z" fill="#1E40AF"/>
+<circle cx="18" cy="19" r="3" fill="white"/>
+<text x="28" y="22" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1E40AF">iyzico</text>
+<text x="28" y="15" font-family="Arial, sans-serif" font-size="6" fill="#64748B">ile Öde</text>
+</svg>

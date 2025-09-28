@@ -30,32 +30,12 @@ export default function IletisimPage() {
     setIsSubmitting(true);
 
     try {
-      // Check if running in browser
-      if (typeof window === 'undefined') {
-        throw new Error('EmailJS only works in browser environment');
-      }
-
-      // Check environment variables
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-      console.log('EmailJS Config:', {
-        serviceId: serviceId ? 'Set' : 'Missing',
-        templateId: templateId ? 'Set' : 'Missing', 
-        publicKey: publicKey ? 'Set' : 'Missing'
-      });
-
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS configuration is missing');
-      }
-
       // EmailJS service configuration
       const result = await emailjs.sendForm(
-        serviceId,
-        templateId, 
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID', // EmailJS Service ID
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID', // EmailJS Template ID  
         form.current!,
-        publicKey
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY' // EmailJS Public Key
       );
 
       console.log('Email sent successfully:', result.text);
