@@ -51,12 +51,15 @@ export default function Pricing() {
                 >
                   İletişime Geçin
                 </Link>
+                {/*
+                 
                 <Link
                   href="tel:+905001234567"
                   className="border-2 border-white/30 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-colors"
                 >
                   Hemen Arayın
                 </Link>
+                */}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-white/20">
