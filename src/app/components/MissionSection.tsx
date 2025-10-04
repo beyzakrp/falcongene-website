@@ -172,6 +172,9 @@ export default function MissionSection() {
                   src={test.image}
                   alt={test.title}
                   fill
+                  quality={80}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 150px, 300px"
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 
