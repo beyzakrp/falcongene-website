@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ContactService, AnalyticsService } from './firebaseService';
 
 // Hook for contact form submission
@@ -33,7 +33,7 @@ export const useContactForm = () => {
           message: 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.'
         });
       }
-    } catch (_error) {
+    } catch {
       setSubmitResult({
         success: false,
         message: 'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.'
@@ -60,16 +60,16 @@ export const useAnalytics = () => {
   const trackPageView = async (page: string) => {
     try {
       await AnalyticsService.trackPageView(page);
-    } catch (_error) {
-      console.error('Analytics tracking error:', _error);
+    } catch {
+      console.error('Analytics tracking error');
     }
   };
 
   const trackButtonClick = async (buttonName: string, page: string) => {
     try {
       await AnalyticsService.trackButtonClick(buttonName, page);
-    } catch (_error) {
-      console.error('Analytics tracking error:', _error);
+    } catch {
+      console.error('Analytics tracking error');
     }
   };
 
@@ -87,7 +87,7 @@ export const useFirebaseData = <T>(
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -99,16 +99,16 @@ export const useFirebaseData = <T>(
       } else {
         setError(result.error || 'Veri yüklenirken hata oluştu');
       }
-    } catch (_err) {
+    } catch {
       setError('Beklenmeyen bir hata oluştu');
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetchFunction]);
 
   useEffect(() => {
     void fetchData();
-  }, [fetchFunction, fetchData]);
+  }, [fetchData]);
 
   const refetch = () => {
     void fetchData();

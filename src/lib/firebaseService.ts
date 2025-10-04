@@ -16,11 +16,7 @@ import {
   DocumentData 
 } from 'firebase/firestore';
 import {
-  FirestoreDocument,
   FirestoreData,
-  ContactFormData,
-  UserProfile,
-  QueryFilter,
   QueryOptions
 } from './types';
 

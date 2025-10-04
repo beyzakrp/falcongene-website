@@ -38,7 +38,7 @@ export interface ContactFormData {
 
 export interface QueryFilter {
   field: string;
-  operator: QueryFieldFilterConstraint['op'];
+  operator: string; // Changed from QueryFieldFilterConstraint['op'] to string
   value: unknown;
 }
 
