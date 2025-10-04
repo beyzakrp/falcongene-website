@@ -7,7 +7,7 @@ import {
   updateProfile,
   User
 } from 'firebase/auth';
-import { AuthResponse, FirebaseErrorType } from './types';
+import { FirebaseError } from 'firebase/app';
 
 export class AuthService {
   
@@ -16,8 +16,11 @@ export class AuthService {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       return { success: true, user: userCredential.user };
-    } catch (error: any) {
-      return { success: false, error: error.code };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { success: false, error: error.code };
+      }
+      return { success: false, error: 'unknown_error' };
     }
   }
 
@@ -32,8 +35,11 @@ export class AuthService {
       }
       
       return { success: true, user: userCredential.user };
-    } catch (error: any) {
-      return { success: false, error: error.code };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { success: false, error: error.code };
+      }
+      return { success: false, error: 'unknown_error' };
     }
   }
 
@@ -42,8 +48,11 @@ export class AuthService {
     try {
       await signOut(auth);
       return { success: true };
-    } catch (error: any) {
-      return { success: false, error: error.code };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { success: false, error: error.code };
+      }
+      return { success: false, error: 'unknown_error' };
     }
   }
 
@@ -52,8 +61,11 @@ export class AuthService {
     try {
       await sendPasswordResetEmail(auth, email);
       return { success: true };
-    } catch (error: any) {
-      return { success: false, error: error.code };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { success: false, error: error.code };
+      }
+      return { success: false, error: 'unknown_error' };
     }
   }
 
@@ -62,8 +74,11 @@ export class AuthService {
     try {
       await updateProfile(user, data);
       return { success: true };
-    } catch (error: any) {
-      return { success: false, error: error.code };
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { success: false, error: error.code };
+      }
+      return { success: false, error: 'unknown_error' };
     }
   }
 

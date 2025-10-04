@@ -33,7 +33,7 @@ export const useContactForm = () => {
           message: 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.'
         });
       }
-    } catch (error) {
+    } catch (_error) {
       setSubmitResult({
         success: false,
         message: 'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.'
@@ -60,16 +60,16 @@ export const useAnalytics = () => {
   const trackPageView = async (page: string) => {
     try {
       await AnalyticsService.trackPageView(page);
-    } catch (error) {
-      console.error('Analytics tracking error:', error);
+    } catch (_error) {
+      console.error('Analytics tracking error:', _error);
     }
   };
 
   const trackButtonClick = async (buttonName: string, page: string) => {
     try {
       await AnalyticsService.trackButtonClick(buttonName, page);
-    } catch (error) {
-      console.error('Analytics tracking error:', error);
+    } catch (_error) {
+      console.error('Analytics tracking error:', _error);
     }
   };
 
@@ -81,7 +81,7 @@ export const useAnalytics = () => {
 
 // Hook for fetching data with loading states
 export const useFirebaseData = <T>(
-  fetchFunction: () => Promise<{ success: boolean; data?: T; error?: any }>
+  fetchFunction: () => Promise<{ success: boolean; data?: T; error?: string }>
 ) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
@@ -99,7 +99,7 @@ export const useFirebaseData = <T>(
       } else {
         setError(result.error || 'Veri yüklenirken hata oluştu');
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Beklenmeyen bir hata oluştu');
     } finally {
       setLoading(false);
@@ -107,11 +107,11 @@ export const useFirebaseData = <T>(
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    void fetchData();
+  }, [fetchFunction, fetchData]);
 
   const refetch = () => {
-    fetchData();
+    void fetchData();
   };
 
   return {
