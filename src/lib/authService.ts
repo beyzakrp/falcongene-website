@@ -7,6 +7,7 @@ import {
   updateProfile,
   User
 } from 'firebase/auth';
+import { AuthResponse, FirebaseErrorType } from './types';
 
 export class AuthService {
   

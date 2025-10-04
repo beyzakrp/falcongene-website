@@ -11,14 +11,24 @@ import {
   where,
   orderBy,
   limit,
-  Timestamp 
+  Timestamp,
+  WhereFilterOp,
+  DocumentData 
 } from 'firebase/firestore';
+import {
+  FirestoreDocument,
+  FirestoreData,
+  ContactFormData,
+  UserProfile,
+  QueryFilter,
+  QueryOptions
+} from './types';
 
 // Generic Firestore operations
 export class FirebaseService {
   
   // Add document to collection
-  static async addDocument(collectionName: string, data: any) {
+  static async addDocument<T extends DocumentData>(collectionName: string, data: T) {
     try {
       const docRef = await addDoc(collection(db, collectionName), {
         ...data,
@@ -68,7 +78,7 @@ export class FirebaseService {
   }
 
   // Update document
-  static async updateDocument(collectionName: string, docId: string, data: any) {
+  static async updateDocument<T extends DocumentData>(collectionName: string, docId: string, data: Partial<T>) {
     try {
       const docRef = doc(db, collectionName, docId);
       await updateDoc(docRef, {
@@ -94,41 +104,43 @@ export class FirebaseService {
   }
 
   // Query documents with filters
-  static async queryDocuments(
-    collectionName: string, 
-    filters: { field: string; operator: any; value: any }[] = [],
-    orderByField?: string,
-    orderDirection: 'asc' | 'desc' = 'desc',
-    limitCount?: number
-  ) {
+  static async queryDocuments<T extends DocumentData>(
+    collectionName: string,
+    options: QueryOptions = {}
+  ): Promise<{ success: boolean; data?: FirestoreData<T>[]; error?: string }> {
     try {
-      let q = collection(db, collectionName);
+      const collectionRef = collection(db, collectionName);
+      let queryRef = query(collectionRef);
       
       // Apply filters
-      filters.forEach(filter => {
-        q = query(q, where(filter.field, filter.operator, filter.value)) as any;
-      });
+      if (options.filters) {
+        options.filters.forEach(filter => {
+          queryRef = query(queryRef, where(filter.field, filter.operator as WhereFilterOp, filter.value));
+        });
+      }
       
       // Apply ordering
-      if (orderByField) {
-        q = query(q, orderBy(orderByField, orderDirection)) as any;
+      if (options.orderBy) {
+        queryRef = query(queryRef, orderBy(options.orderBy.field, options.orderBy.direction));
+      } else if (options.orderByField) {
+        queryRef = query(queryRef, orderBy(options.orderByField, options.orderDirection || 'desc'));
       }
       
       // Apply limit
-      if (limitCount) {
-        q = query(q, limit(limitCount)) as any;
+      if (options.limitCount) {
+        queryRef = query(queryRef, limit(options.limitCount));
       }
-      
-      const querySnapshot = await getDocs(q);
+
+      const querySnapshot = await getDocs(queryRef);
       const documents = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-      }));
+      })) as FirestoreData<T>[];
       
       return { success: true, data: documents };
     } catch (error) {
       console.error('Error querying documents:', error);
-      return { success: false, error };
+      return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
     }
   }
 }
@@ -152,12 +164,10 @@ export const ContactService = {
 
   // Get all contact submissions
   async getContactSubmissions() {
-    return FirebaseService.queryDocuments(
-      'contacts', 
-      [], 
-      'createdAt', 
-      'desc'
-    );
+    return FirebaseService.queryDocuments('contacts', {
+      orderByField: 'createdAt',
+      orderDirection: 'desc'
+    });
   }
 };
 
@@ -195,10 +205,9 @@ export const UserService = {
     chronicDiseases: string;
     geneticDiagnoses: string;
   }>) {
-    const users = await FirebaseService.queryDocuments(
-      'users',
-      [{ field: 'userId', operator: '==', value: userId }]
-    );
+    const users = await FirebaseService.queryDocuments('users', {
+      filters: [{ field: 'userId', operator: '==', value: userId }]
+    });
     
     if (users.success && users.data && users.data.length > 0) {
       const userDoc = users.data[0];
@@ -209,17 +218,11 @@ export const UserService = {
   },
 
   // Get user profile
-  async getUserProfile(userId: string) {
-    const users = await FirebaseService.queryDocuments(
-      'users',
-      [{ field: 'userId', operator: '==', value: userId }]
-    );
-    
-    if (users.success && users.data && users.data.length > 0) {
-      return { success: true, data: users.data[0] };
-    } else {
-      return { success: false, error: 'User profile not found' };
-    }
+  async getAnalysis(userId: string) {
+    return FirebaseService.queryDocuments('analyses', {
+      filters: [{ field: 'userId', operator: '==', value: userId }],
+      orderBy: { field: 'createdAt', direction: 'desc' }
+    });
   }
 };
 
