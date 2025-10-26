@@ -56,33 +56,9 @@ export default function ProfilePage() {
       console.error('Profile update error:', error);
       setMessage({ type: 'error', text: 'Profil güncellenirken bir hata oluştu' });
     } finally {
-      setSaving(false);
+      setUpdateLoading(false);
     }
   };
-
-  const handlePasswordChange = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (newPassword !== confirmPassword) {
-      setMessage({ type: 'error', text: 'Şifreler eşleşmiyor' });
-      return;
-    }
-
-    if (newPassword.length < 6) {
-      setMessage({ type: 'error', text: 'Şifre en az 6 karakter olmalıdır' });
-      return;
-    }
-
-    setChangingPassword(true);
-    setMessage(null);
-
-    try {
-      await updatePassword(user, newPassword);
-      setMessage({ type: 'success', text: 'Şifre başarıyla güncellendi' });
-      setCurrentPassword('');
-      setNewPassword('');
-      setConfirmPassword('');
-    } catch (error: unknown) {
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
 }
 
 // Hash doğrulama fonksiyonu (callback'lerde kullanılacak)
-export function verifyHash(
+function verifyHash(
   sx: string,
   clientRefCode: string,
   amount: string,
