@@ -60,3 +60,60 @@ export type FirestoreData<T> = T & {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+// PaynKolay Payment Types
+export interface PaynKolayPaymentData {
+  sx: string;
+  clientRefCode: string;
+  successUrl: string;
+  failUrl: string;
+  amount: string;
+  installmentNo: string;
+  cardHolderName: string;
+  month: string;
+  year: string;
+  cvv: string;
+  cardNumber: string;
+  use3D: string;
+  transactionType: string;
+  rnd: string;
+  hashData: string;
+  environment: string;
+  currencyNumber: string;
+}
+
+export interface PaynKolayResponse {
+  RESPONSE_CODE?: string;
+  AUTH_CODE?: string;
+  clientRefCode?: string;
+  amount?: string;
+  hashData?: string;
+  rnd?: string;
+  ERROR_MESSAGE?: string;
+  errorMessage?: string;
+  TRANSACTION_ID?: string;
+}
+
+export interface PaymentVerificationResult {
+  success: boolean;
+  message: string;
+  responseCode?: string;
+  authCode?: string;
+  hashVerification?: boolean;
+  externalVerification?: {
+    success: boolean;
+    message: string;
+    rawResponse?: string;
+  };
+}
+
+export interface PaymentFormData {
+  amount: string;
+  installmentNo: string;
+  cardHolderName: string;
+  cardNumber: string;
+  month: string;
+  year: string;
+  cvv: string;
+  use3D: boolean;
+}

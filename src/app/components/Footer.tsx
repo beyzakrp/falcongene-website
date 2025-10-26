@@ -27,7 +27,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white">Kaynaklar</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              <li><Link href="/blog" className="hover:underline">Blog</Link></li>
+              {/* <li><Link href="/blog" className="hover:underline">Blog</Link></li> */}
               <li><Link href="/iletisim" className="hover:underline">İletişim</Link></li>
               <li><Link href="/iade-politikasi" className="hover:underline">Teslimat ve İade Politikası</Link></li>
               <li><Link href="/mesafeli-satis-sozlesmesi" className="hover:underline">Mesafeli Satış Sözleşmesi</Link></li>

@@ -1,0 +1,59 @@
+// Firestore Security Rules - Development için geçici açık kurallar
+// firebase.json dosyasında tanımlanmalı
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users koleksiyonu - kullanıcılar sadece kendi verilerini görebilir
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Orders koleksiyonu - kullanıcılar sadece kendi siparişlerini görebilir
+    match /orders/{orderId} {
+      // Okuma: kullanıcı giriş yapmış ve email adresi eşleşiyor veya admin
+      allow read: if request.auth != null && 
+                     (request.auth.token.email == resource.data.customerInfo.email ||
+                      request.auth.token.email == 'falcongene1@gmail.com');
+      
+      // Yazma: kullanıcı giriş yapmış ve email adresi eşleşiyor veya admin
+      allow create: if request.auth != null && 
+                       (request.auth.token.email == request.resource.data.customerInfo.email ||
+                        request.auth.token.email == 'falcongene1@gmail.com');
+      
+      // Güncelleme: kullanıcı giriş yapmış ve email adresi eşleşiyor veya admin
+      allow update: if request.auth != null && 
+                       (request.auth.token.email == resource.data.customerInfo.email ||
+                        request.auth.token.email == 'falcongene1@gmail.com');
+      
+      // Silme: sadelta admin
+      allow delete: if request.auth != null && 
+                       request.auth.token.email == 'falcongene1@gmail.com';
+    }
+    
+    // Test results koleksiyonu - kullanıcılar sadece kendi sonuçlarını görebilir
+    match /testResults/{resultId} {
+      allow read, write: if request.auth != null && 
+                           (request.auth.token.email == resource.data.customerEmail ||
+                            request.auth.token.email == 'falcongene1@gmail.com');
+    }
+    
+    // Waitlist collection - herkese create izni, admin'e full erişim
+    match /waitlist/{document} {
+      allow create: if true;
+      allow read, write: if request.auth != null && 
+                         request.auth.token.email == 'falcongene1@gmail.com';
+    }
+    
+    // Admin koleksiyonu - sadece admin kullanıcılar
+    match /admin/{document=**} {
+      allow read, write: if request.auth != null && 
+                           request.auth.token.email == 'falcongene1@gmail.com';
+    }
+    
+    // Diğer koleksiyonlar için genel kural - sadece authenticated users
+    match /{document=**} {
+      allow read, write: if false; // Production'da bu kapalı olmalı - sadece yukarıdaki özel kurallar geçerli
+    }
+  }
+}

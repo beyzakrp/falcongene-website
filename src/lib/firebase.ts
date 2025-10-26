@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
@@ -18,18 +17,19 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+console.log("[FB] apiKey:", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
+console.log("[FB] projectId:", process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
+console.log("[FB] storageBucket:", process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET);
+
 const app = initializeApp(firebaseConfig);
+console.log("[FB] app.options:", app.options);
+
+
+
 
 // Initialize Firebase services
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
-// Initialize Analytics (only in browser environment)
-let analytics;
-if (typeof window !== 'undefined') {
-  analytics = getAnalytics(app);
-}
-
-export { analytics };
 export default app;

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import FlowingLines from "./components/FlowingLines";
+import ConditionalLayout from "./components/ConditionalLayout";
+import EnvironmentIndicator from "./components/EnvironmentIndicator";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -21,11 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-[#0D1B2A] text-white`}>
-        <FlowingLines />
-        <Navbar />
-        <main className="relative z-10">{children}</main>
-        <Footer />
+      <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
+        <EnvironmentIndicator />
         <Analytics />
       </body>
     </html>

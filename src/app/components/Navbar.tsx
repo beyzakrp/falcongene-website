@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import useAuth from "../../lib/useAuth";
+import { useCart } from "../../lib/CartContext";
 
 const navItems = [
   { label: "Anasayfa", href: "/" },
@@ -12,7 +14,7 @@ const navItems = [
   { label: "Testleri Tanıyın", href: "/testler" },
   { label: "Nasıl Çalışır", href: "/nasil-calisir" },
   { label: "Satın Alın", href: "/klinikler" },
-  { label: "Blog", href: "/blog" },
+ /* { label: "Blog", href: "/blog" },*/
   { label: "SSS", href: "/sss" },
   { label: "İletişim", href: "/iletisim" },
 ];
@@ -20,7 +22,15 @@ const navItems = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { user, loading, signOut } = useAuth();
+  const { state, toggleCart } = useCart();
+
+  const handleSignOut = async () => {
+    await signOut();
+    setUserMenuOpen(false);
+  };
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -62,26 +72,119 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right: CTA */}
-            <div className="hidden md:flex items-center">
-              <Link
-                href="/klinikler"
-                className="rounded-full px-4 py-2 text-sm font-semibold text-[#0D1B2A] bg-[#D6F5E3] shadow-[0_0_0_0_rgba(214,245,227,0.6)] hover:shadow-[0_0_24px_4px_rgba(214,245,227,0.35)] transition-shadow"
+            {/* Right: Cart + Auth & CTA */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* Cart Button */}
+              <button
+                onClick={toggleCart}
+                className="relative p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
               >
-                Kiti Satın Al
-              </Link>
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {state.itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                    {state.itemCount > 99 ? '99+' : state.itemCount}
+                  </span>
+                )}
+              </button>
+
+              {!loading && (
+                <>
+                  {user ? (
+                    <div className="relative">
+                      <button
+                        onClick={() => setUserMenuOpen(!userMenuOpen)}
+                        className="flex items-center gap-2 rounded-full px-3 py-2 text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors"
+                      >
+                        <div className="w-8 h-8 bg-[#D6F5E3] rounded-full flex items-center justify-center text-[#0D1B2A] font-semibold text-sm">
+                          {user.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}
+                        </div>
+                        <span className="hidden lg:block">{user.displayName || user.email}</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+
+                      {userMenuOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                          <Link
+                            href="/dashboard"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            onClick={() => setUserMenuOpen(false)}
+                          >
+                            Panelim
+                          </Link>
+                          <Link
+                            href="/dashboard/profile"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            onClick={() => setUserMenuOpen(false)}
+                          >
+                            Profilim
+                          </Link>
+                          <Link
+                            href="/dashboard/orders"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            onClick={() => setUserMenuOpen(false)}
+                          >
+                            Siparişlerim
+                          </Link>
+                          <hr className="my-1" />
+                          <button
+                            onClick={handleSignOut}
+                            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            Çıkış Yap
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href="/auth"
+                        className="rounded-full px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 transition-colors"
+                      >
+                        Giriş Yap
+                      </Link>
+                      <Link
+                        href="/klinikler"
+                        className="rounded-full px-4 py-2 text-sm font-semibold text-[#0D1B2A] bg-[#D6F5E3] shadow-[0_0_0_0_rgba(214,245,227,0.6)] hover:shadow-[0_0_24px_4px_rgba(214,245,227,0.35)] transition-shadow"
+                      >
+                        Kiti Satın Al
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              aria-label="Menü"
-              className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-white/90 hover:text-white hover:bg-white/10"
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+            {/* Mobile: Cart + Menu Button */}
+            <div className="md:hidden flex items-center gap-2">
+              <button
+                onClick={toggleCart}
+                className="relative p-2 text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {state.itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                    {state.itemCount > 99 ? '99+' : state.itemCount}
+                  </span>
+                )}
+              </button>
+
+              <button
+                aria-label="Menü"
+                className="inline-flex items-center justify-center rounded-md p-2 text-white/90 hover:text-white hover:bg-white/10"
+                onClick={() => setMenuOpen((v) => !v)}
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -99,9 +202,59 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
+              
+              {/* Mobile Auth Section */}
+              {!loading && (
+                <>
+                  {user ? (
+                    <div className="mt-4 pt-4 border-t border-white/10">
+                      <div className="flex items-center gap-3 px-3 py-2 mb-2">
+                        <div className="w-8 h-8 bg-[#D6F5E3] rounded-full flex items-center justify-center text-[#0D1B2A] font-semibold text-sm">
+                          {user.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}
+                        </div>
+                        <span className="text-white/90">{user.displayName || user.email}</span>
+                      </div>
+                      <Link
+                        href="/dashboard"
+                        className="block text-white/90 hover:text-white px-3 py-2 rounded-md"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Panelim
+                      </Link>
+                      <Link
+                        href="/dashboard/orders"
+                        className="block text-white/90 hover:text-white px-3 py-2 rounded-md"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Siparişlerim
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleSignOut();
+                          setMenuOpen(false);
+                        }}
+                        className="block w-full text-left text-white/90 hover:text-white px-3 py-2 rounded-md"
+                      >
+                        Çıkış Yap
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
+                      <Link
+                        href="/auth"
+                        className="block text-white/90 hover:text-white px-3 py-2 rounded-md"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Giriş Yap
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
+              
               <Link
                 href="/klinikler"
-                className="mt-2 rounded-full px-4 py-2 text-sm font-semibold text-[#0D1B2A] bg-[#D6F5E3]"
+                className="mt-2 rounded-full px-4 py-2 text-sm font-semibold text-[#0D1B2A] bg-[#D6F5E3] text-center"
                 onClick={() => setMenuOpen(false)}
               >
                 Kiti Satın Al

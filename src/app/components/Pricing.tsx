@@ -6,8 +6,27 @@ import Link from "next/link";
 import { useState } from "react";
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
+import PaynKolayPayment from './PaynKolayPayment';
+import { useCart } from '../../lib/CartContext';
 
 const testTypes = [
+  {
+    id: "test",
+    name: "Test Paketi",
+    subtitle: "Ödeme Test Edilimi",
+    description: "Ödeme sistemini test etmek için 1 TL'lik simbolik test paketi. Gerçek genetik analiz içermez.",
+    features: [
+      "Ödeme sistemi testi",
+      "PaynKolay entegrasyonu",
+      "Sipariş işlem akışı",
+      "Dashboard görüntüleme testi"
+    ],
+    icon: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    )
+  },
   {
     id: "nutrition",
     name: "Nutrigenetik Testi",
@@ -79,11 +98,17 @@ const testTypes = [
 ];
 
 export default function Pricing() {
-  const [selectedType, setSelectedType] = useState("");
+  // Check if we're in test mode
+  const isTestMode = process.env.NEXT_PUBLIC_NKOLAY_ENVIRONMENT === 'test';
+  
+  const [selectedType, setSelectedType] = useState(isTestMode ? "test" : "nutrition");
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<{name: string, price: string, genes: string} | null>(null);
+  const { addItem, openCart } = useCart();
 
   const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -104,6 +129,114 @@ export default function Pricing() {
     }
   };
 
+  const handleAddToCart = (packageType: 'basic' | 'premium') => {
+    if (!selectedType) return;
+    
+    // Test paketi için özel fiyatlandırma
+    if (selectedType === 'test') {
+      const testTypeInfo = testTypes.find(t => t.id === selectedType);
+      if (!testTypeInfo) return;
+
+      const cartItem = {
+        id: `test-${packageType}`,
+        name: testTypeInfo.name,
+        type: 'health' as const,
+        package: 'basic' as const,
+        price: 100, // 1 TL = 100 kuruş
+        originalPrice: 100,
+        description: 'Test Paketi - Ödeme Sistemi Testi',
+        features: testTypeInfo.features
+      };
+
+      addItem(cartItem);
+      openCart();
+      return;
+    }
+    
+    const packages = {
+      basic: { name: 'Basic Paket', price: 7499, genes: '6 Gen', originalPrice: 9999 },
+      premium: { name: 'Premium Paket', price: 11250, genes: '12 Gen', originalPrice: 14999 }
+    };
+
+    const pkg = packages[packageType];
+    const testTypeInfo = testTypes.find(t => t.id === selectedType);
+    
+    if (!testTypeInfo) return;
+
+    const cartItem = {
+      id: `${selectedType}-${packageType}`,
+      name: testTypeInfo.name,
+      type: selectedType as 'skin' | 'nutrition' | 'fitness' | 'health',
+      package: packageType === 'basic' ? 'basic' as const : 'premium' as const,
+      price: pkg.price,
+      originalPrice: pkg.originalPrice,
+      description: `${pkg.name} - ${pkg.genes} Analizi`,
+      features: testTypeInfo.features
+    };
+
+    addItem(cartItem);
+    openCart();
+  };
+
+  const handleAddToCartIntolerance = () => {
+    const testTypeInfo = testTypes.find(t => t.id === 'intolerance');
+    if (!testTypeInfo) return;
+
+    const cartItem = {
+      id: 'intolerance-tek',
+      name: testTypeInfo.name,
+      type: 'health' as const,
+      package: 'premium' as const,
+      price: 3250,
+      description: 'Gıda İntolerans Paketi - 400+ Gıda Analizi',
+      features: testTypeInfo.features
+    };
+
+    console.log('Adding to cart:', cartItem);
+    addItem(cartItem);
+    openCart();
+  };
+
+  const handlePurchaseIntolerance = () => {
+    const packages = {
+      tek: { name: 'Gıda İntolerans Paketi', price: '₺3.250', genes: '400+ Gıda' }
+    };
+
+    setSelectedPackage(packages.tek);
+    setShowPayment(true);
+  };
+
+  const handlePurchase = (packageType: 'basic' | 'premium') => {
+    if (!selectedType) return;
+    
+    // Test paketi için özel fiyatlandırma
+    if (selectedType === 'test') {
+      setSelectedPackage({ name: 'Test Paketi', price: '1.00', genes: 'Test' });
+      setShowPayment(true);
+      return;
+    }
+    
+    const packages = {
+      basic: { name: 'Basic Paket', price: '74.99', genes: '6 Gen' },
+      premium: { name: 'Premium Paket', price: '112.50', genes: '12 Gen' }
+    };
+
+    setSelectedPackage(packages[packageType]);
+    setShowPayment(true);
+  };
+
+  const handlePaymentSuccess = () => {
+    setShowPayment(false);
+    setShowPopup(false);
+    
+    // Success sayfasına yönlendir - orada sipariş kaydedilecek
+    // PaynKolayPayment komponenti zaten otomatik olarak yönlendiriyor
+  };
+
+  const handlePaymentError = (error: string) => {
+    alert(`Ödeme hatası: ${error}`);
+  };
+
   return (
     <section id="pricing" className="relative bg-[#0D1B2A] py-16 sm:py-20 text-white">
       <div className="mx-auto max-w-7xl px-6">
@@ -114,9 +247,18 @@ export default function Pricing() {
 
         {/* Test Type Selection */}
         <div className="mb-12">
-          <h3 className="text-xl font-semibold text-center mb-8">Test Tipinizi Seçin</h3>
+          <h3 className="text-xl font-semibold text-center mb-8">
+            Test Tipinizi Seçin
+            {isTestMode && (
+              <span className="ml-2 text-sm text-yellow-400">
+                (Test Modu Aktif)
+              </span>
+            )}
+          </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {testTypes.map((type) => (
+            {testTypes
+              .filter(type => isTestMode || type.id !== 'test') // Test paketi sadece test modunda görünsün
+              .map((type) => (
               <div
                 key={type.id}
                 className={`group relative overflow-hidden rounded-3xl bg-white/5 border-2 transition-all duration-300 transform hover:-translate-y-2 flex flex-col h-full
@@ -180,8 +322,105 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Packages */}
-        <div className="mt-8 grid md:grid-cols-2 gap-8">
-          {/* Orta Paket */}
+        {selectedType === 'test' ? (
+          /* Test Paketi - Tek Paket */
+          <div className="mt-8 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 relative overflow-hidden hover:scale-105 transition-transform duration-300 max-w-md w-full"
+            >
+              <div className="absolute top-4 right-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                TEST
+              </div>
+              <div className="mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-500/20 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Test Paketi
+                </h3>
+                <div className="text-3xl font-bold text-yellow-500 mb-4">
+                  ₺1.00
+                </div>
+                <div className="text-white/80 mb-6">
+                  Ödeme Sistemi Testi
+                </div>
+                <div className="bg-yellow-500/10 rounded-lg p-3 mb-4">
+                  <p className="text-yellow-500 text-sm font-medium text-center">
+                    ⚠️ Bu sadece ödeme testi içindir. Gerçek analiz sonucu vermez.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleAddToCart('basic')}
+                  className="w-full px-8 py-3 rounded-full font-semibold transition-all shadow-lg text-center bg-yellow-500 text-black hover:bg-yellow-400"
+                >
+                  Sepete Ekle
+                </button>
+                <button
+                  onClick={() => handlePurchase('basic')}
+                  className="w-full px-8 py-2 rounded-full font-medium transition-all text-center border border-yellow-500 text-yellow-500 hover:bg-yellow-500/10"
+                >
+                  Hemen Satın Al
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        ) : selectedType === 'intolerance' ? (
+          /* Gıda İntolerans Testi - Tek Paket */
+          <div className="mt-8 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 relative overflow-hidden hover:scale-105 transition-transform duration-300 max-w-md w-full"
+            >
+              <div className="absolute top-4 right-4 bg-[#D6F5E3] text-[#0D1B2A] px-3 py-1 rounded-full text-sm font-semibold">
+                Tek Paket
+              </div>
+              <div className="mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-[#D6F5E3]/20 rounded-full mb-4">
+                  <svg className="w-8 h-8 text-[#D6F5E3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Gıda İntolerans Paketi
+                </h3>
+                <div className="text-3xl font-bold text-[#D6F5E3] mb-4">
+                  ₺3.250
+                </div>
+                <div className="text-white/80 mb-6">
+                  400+ Gıda Analizi
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleAddToCartIntolerance()}
+                  className="w-full px-8 py-3 rounded-full font-semibold transition-all shadow-lg text-center bg-[#D6F5E3] text-[#0D1B2A] hover:bg-[#D6F5E3]/90"
+                >
+                  Sepete Ekle
+                </button>
+                <button
+                  onClick={() => handlePurchaseIntolerance()}
+                  className="w-full px-8 py-2 rounded-full font-medium transition-all text-center border border-[#D6F5E3] text-[#D6F5E3] hover:bg-[#D6F5E3]/10"
+                >
+                  Hemen Satın Al
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        ) : (
+          /* Diğer testler için normal paketler */
+          <div className="mt-8 grid md:grid-cols-2 gap-8">
+          {/* Basic Paket */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -195,7 +434,7 @@ export default function Pricing() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">
-                Orta Paket
+                Basic Paket
               </h3>
               <div className="text-3xl font-bold text-[#D6F5E3] mb-4">
                 ₺7.499
@@ -205,9 +444,9 @@ export default function Pricing() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <button
-                onClick={() => setShowPopup(true)}
+                onClick={() => handleAddToCart('basic')}
                 disabled={!selectedType}
                 className={`w-full px-8 py-3 rounded-full font-semibold transition-all shadow-lg text-center
                   ${!selectedType
@@ -215,12 +454,23 @@ export default function Pricing() {
                     : 'bg-[#D6F5E3] text-[#0D1B2A] hover:bg-[#D6F5E3]/90'
                   }`}
               >
-                {selectedType ? 'Satın Al' : 'Lütfen Test Tipi Seçin'}
+                {selectedType ? 'Sepete Ekle' : 'Lütfen Test Tipi Seçin'}
+              </button>
+              <button
+                onClick={() => handlePurchase('basic')}
+                disabled={!selectedType}
+                className={`w-full px-8 py-2 rounded-full font-medium transition-all text-center border border-[#D6F5E3]
+                  ${!selectedType
+                    ? 'text-white/50 border-white/20 cursor-not-allowed'
+                    : 'text-[#D6F5E3] hover:bg-[#D6F5E3]/10'
+                  }`}
+              >
+                {selectedType ? 'Hemen Satın Al' : 'Test Seçin'}
               </button>
             </div>
           </motion.div>
 
-          {/* Büyük Paket */}
+          {/* Premium Paket */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -237,7 +487,7 @@ export default function Pricing() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">
-                Büyük Paket
+                Premium Paket
               </h3>
               <div className="text-3xl font-bold text-[#D6F5E3] mb-4">
                 ₺11.250
@@ -247,9 +497,9 @@ export default function Pricing() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <button
-                onClick={() => setShowPopup(true)}
+                onClick={() => handleAddToCart('premium')}
                 disabled={!selectedType}
                 className={`w-full px-8 py-3 rounded-full font-semibold transition-all shadow-lg text-center
                   ${!selectedType
@@ -257,11 +507,23 @@ export default function Pricing() {
                     : 'bg-[#D6F5E3] text-[#0D1B2A] hover:bg-[#D6F5E3]/90'
                   }`}
               >
-                {selectedType ? 'Satın Al' : 'Lütfen Test Tipi Seçin'}
+                {selectedType ? 'Sepete Ekle' : 'Lütfen Test Tipi Seçin'}
+              </button>
+              <button
+                onClick={() => handlePurchase('premium')}
+                disabled={!selectedType}
+                className={`w-full px-8 py-2 rounded-full font-medium transition-all text-center border border-[#D6F5E3]
+                  ${!selectedType
+                    ? 'text-white/50 border-white/20 cursor-not-allowed'
+                    : 'text-[#D6F5E3] hover:bg-[#D6F5E3]/10'
+                  }`}
+              >
+                {selectedType ? 'Hemen Satın Al' : 'Test Seçin'}
               </button>
             </div>
           </motion.div>
         </div>
+        )}
 
         {/* Payment Methods */}
         <motion.div
@@ -313,7 +575,57 @@ export default function Pricing() {
       {/* animated gradient band behind */}
       <div className="pointer-events-none absolute inset-x-0 -z-10 h-40 -translate-y-12 bg-[linear-gradient(90deg,#00C9FF_0%,#9A00FF_50%,#00FFF0_100%)] opacity-20 blur-3xl" />
 
-      {/* Popup */}
+      {/* Payment Modal */}
+      <AnimatePresence>
+        {showPayment && selectedPackage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-[#0D1B2A] rounded-3xl p-6 max-w-lg w-full border border-white/10 relative max-h-[90vh] overflow-y-auto"
+            >
+              <button
+                onClick={() => setShowPayment(false)}
+                className="absolute top-4 right-4 text-white/50 hover:text-white z-10"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-white mb-2 text-center">Ödeme</h3>
+                <div className="bg-white/5 rounded-xl p-4 mb-4">
+                  <div className="text-center">
+                    <p className="text-[#D6F5E3] font-semibold">{selectedPackage.name}</p>
+                    <p className="text-white/70 text-sm">{selectedPackage.genes}</p>
+                    <p className="text-white/70 text-sm">Test Tipi: {testTypes.find(t => t.id === selectedType)?.name}</p>
+                    <p className="text-2xl font-bold text-white mt-2">₺{selectedPackage.price.replace('.00', '')}</p>
+                  </div>
+                </div>
+              </div>
+
+              <PaynKolayPayment
+                amount={selectedPackage.price}
+                clientRefCode={`FALCON-${selectedType.toUpperCase()}-${Date.now()}`}
+                testType={selectedType}
+                packageType={selectedPackage.name === 'Basic Paket' ? 'basic' : 'premium'}
+                packageName={selectedPackage.name}
+                onSuccess={handlePaymentSuccess}
+                onError={handlePaymentError}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Waitlist Popup - Geçici olarak sakla */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
