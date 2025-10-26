@@ -155,17 +155,18 @@ export async function POST(request: NextRequest) {
 }
 
 // Hash doğrulama fonksiyonu (callback'lerde kullanılacak)
-function verifyHash(
-  sx: string,
-  clientRefCode: string,
-  amount: string,
-  responseCode: string,
-  authCode: string,
-  rnd: string,
-  secret: string,
-  receivedHash: string
-): boolean {
-  const hashString = sx + clientRefCode + amount + responseCode + authCode + rnd + secret;
-  const calculatedHash = crypto.createHash('sha256').update(hashString).digest('hex').toUpperCase();
-  return calculatedHash === receivedHash;
-}
+// Şu an kullanılmıyor, gerekirse export edilebilir
+// function verifyHash(
+//   sx: string,
+//   clientRefCode: string,
+//   amount: string,
+//   responseCode: string,
+//   authCode: string,
+//   rnd: string,
+//   secret: string,
+//   receivedHash: string
+// ): boolean {
+//   const hashString = sx + clientRefCode + amount + responseCode + authCode + rnd + secret;
+//   const calculatedHash = crypto.createHash('sha256').update(hashString).digest('hex').toUpperCase();
+//   return calculatedHash === receivedHash;
+// }

@@ -6,6 +6,7 @@ import useAuth from '../../lib/useAuth';
 interface PaynKolayPaymentProps {
   amount: string;
   clientRefCode?: string;
+  onSuccess?: () => void;
   onError?: (error: string) => void;
   testType?: string;
   packageType?: 'basic' | 'premium';
@@ -15,6 +16,7 @@ interface PaynKolayPaymentProps {
 export default function PaynKolayPayment({ 
   amount, 
   clientRefCode,
+  onSuccess,
   onError,
   testType,
   packageType,
