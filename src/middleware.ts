@@ -8,13 +8,11 @@ export function middleware(request: NextRequest) {
     
     // Production'da test kartlarını engelle (opsiyonel)
     if (environment === 'production') {
-      const testCardPatterns = [
-        '4508034508034509', // Test başarılı kart
-        '4508034508034517', // Test başarısız kart
-      ];
-      
-      // Request body'den kart numarasını kontrol et (eğer varsa)
-      // Bu kısım opsiyonel - gerçek implementasyonda PaynKolay zaten reddeder
+      // Test kartı kontrolü (opsiyonel - PaynKolay zaten reddeder)
+      // const testCardPatterns = [
+      //   '4508034508034509',
+      //   '4508034508034517',
+      // ];
     }
     
     // Development'ta production credentials kullanımını logla

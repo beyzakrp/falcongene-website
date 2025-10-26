@@ -6,7 +6,7 @@ import { auth } from "../../lib/firebase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { TbBackground } from "react-icons/tb";
+import { FcGoogle } from "react-icons/fc";
 
 // SVG Icons
 const EmailIcon = ({ className }: { className?: string }) => (
@@ -73,8 +73,8 @@ export default function AuthPage() {
         await signInWithEmailAndPassword(auth, email, password);
         router.push("/dashboard");
       }
-    } catch (error: any) {
-      setError(getErrorMessage(error.code));
+    } catch (error: unknown) {
+      setError(getErrorMessage(error instanceof Error && 'code' in error ? (error as {code: string}).code : 'unknown'));
     } finally {
       setLoading(false);
     }
@@ -86,12 +86,12 @@ export default function AuthPage() {
     
     try {
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
       
       // Giriş başarılı, dashboard'a yönlendir
       router.push("/dashboard");
-    } catch (error: any) {
-      setError(getErrorMessage(error.code));
+    } catch (error: unknown) {
+      setError(getErrorMessage(error instanceof Error && 'code' in error ? (error as {code: string}).code : 'unknown'));
     } finally {
       setLoading(false);
     }

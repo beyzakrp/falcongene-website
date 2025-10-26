@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { collection, query, where, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, DocumentData } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import useAuth from '../../../lib/useAuth';
 import { useRouter } from 'next/navigation';
@@ -23,7 +23,7 @@ interface Order {
 export default function OrdersPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const [orders, setOrders] = useState<Order[]>([]);
+    const [orders, setOrders] = useState<Order[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function OrdersPage() {
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      const ordersList = snapshot.docs.map(doc => ({
+              const ordersData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
       })) as Order[];

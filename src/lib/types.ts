@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app';
-import { DocumentData, QueryFieldFilterConstraint, OrderByDirection } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
 
 export interface AuthResponse {
   success: boolean;
