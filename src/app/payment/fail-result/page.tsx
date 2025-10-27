@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 interface PaymentResult {
@@ -12,7 +12,7 @@ interface PaymentResult {
   errorMessage?: string;
 }
 
-export default function PaymentFailPage() {
+function PaymentFailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [result, setResult] = useState<PaymentResult | null>(null);
@@ -87,7 +87,7 @@ export default function PaymentFailPage() {
           clientRefCode: clientRefCode || undefined,
           amount: amount || undefined,
           responseCode: responseCode || undefined,
-          errorMessage: errorMessage || undefined
+          errorMessage: bankMessage || undefined
         });
 
       } catch (error) {
@@ -217,5 +217,25 @@ export default function PaymentFailPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PaymentFailPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="max-w-md mx-auto text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+            Ödeme İşleniyor
+          </h2>
+          <p className="text-gray-600">
+            Lütfen bekleyiniz...
+          </p>
+        </div>
+      </div>
+    }>
+      <PaymentFailContent />
+    </Suspense>
   );
 }

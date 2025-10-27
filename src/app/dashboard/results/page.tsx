@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { collection, query, where, onSnapshot, DocumentData } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import useAuth from '../../../lib/useAuth';
 import { useRouter } from 'next/navigation';
@@ -24,7 +24,7 @@ interface TestResult {
 export default function ResultsPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-    const [results, setResults] = useState<Order[]>([]);
+  const [results, setResults] = useState<TestResult[]>([]);
   const [resultsLoading, setResultsLoading] = useState(true);
 
   useEffect(() => {
@@ -45,12 +45,11 @@ export default function ResultsPage() {
     );
 
     const unsubscribe = onSnapshot(completedOrdersQuery, (snapshot) => {
-              const resultsData = querySnapshot.docs
-          .map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          .filter((order: Order) => order.status === 'completed');
+      const orders = snapshot.docs
+        .map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        })) as any[];
       
       // Convert orders to test results format
       const testResults: TestResult[] = orders.map(order => ({

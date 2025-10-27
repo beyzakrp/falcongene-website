@@ -1,6 +1,5 @@
 import { addDoc, collection, doc, updateDoc, getDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
-import { Order } from './types';
 
 export interface Order {
   id?: string;

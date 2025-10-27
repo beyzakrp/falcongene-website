@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { collection, query, where, onSnapshot, DocumentData } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import useAuth from '../../../lib/useAuth';
 import { useRouter } from 'next/navigation';
+
 
 interface Order {
   id: string;
@@ -43,13 +44,13 @@ export default function OrdersPage() {
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
-              const ordersData = querySnapshot.docs.map((doc) => ({
+              const ordersData = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
       })) as Order[];
       
       // Client-side'da tarihe göre sırala
-      const sortedOrders = ordersList.sort((a, b) => {
+      const sortedOrders = ordersData.sort((a, b) => {
         const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt);
         const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
         return dateB.getTime() - dateA.getTime();
