@@ -129,6 +129,13 @@ export default function PaynKolayPayment({
     }
   };
 
+  const formatPrice = (amountInKurus: string) => {
+    return new Intl.NumberFormat('tr-TR', {
+      style: 'currency',
+      currency: 'TRY'
+    }).format(parseFloat(amountInKurus));
+  };
+
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
@@ -137,7 +144,7 @@ export default function PaynKolayPayment({
       
       <div className="mb-4 p-3 bg-blue-50 rounded-md">
         <p className="text-sm text-blue-700">
-          <strong>Tutar:</strong> ₺{amount}
+          <strong>Tutar:</strong> {formatPrice(amount)}
         </p>
       </div>
 
@@ -198,7 +205,7 @@ export default function PaynKolayPayment({
             )}
             <div className="flex justify-between font-semibold text-lg border-t border-gray-300 pt-2">
               <span>Toplam:</span>
-              <span className="text-blue-600">₺{amount}</span>
+              <span className="text-blue-600">{formatPrice(amount)}</span>
             </div>
           </div>
         </div>

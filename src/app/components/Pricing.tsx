@@ -199,7 +199,7 @@ export default function Pricing() {
 
   const handlePurchaseIntolerance = () => {
     const packages = {
-      tek: { name: 'Gıda İntolerans Paketi', price: '₺3.250', genes: '400+ Gıda' }
+      tek: { name: 'Gıda İntolerans Paketi', price: '3250', genes: '400+ Gıda' }
     };
 
     setSelectedPackage(packages.tek);
@@ -217,8 +217,8 @@ export default function Pricing() {
     }
     
     const packages = {
-      basic: { name: 'Basic Paket', price: '74.99', genes: '6 Gen' },
-      premium: { name: 'Premium Paket', price: '112.50', genes: '12 Gen' }
+      basic: { name: 'Basic Paket', price: '7499', genes: '6 Gen' },
+      premium: { name: 'Premium Paket', price: '11250', genes: '12 Gen' }
     };
 
     setSelectedPackage(packages[packageType]);
@@ -606,7 +606,12 @@ export default function Pricing() {
                     <p className="text-[#D6F5E3] font-semibold">{selectedPackage.name}</p>
                     <p className="text-white/70 text-sm">{selectedPackage.genes}</p>
                     <p className="text-white/70 text-sm">Test Tipi: {testTypes.find(t => t.id === selectedType)?.name}</p>
-                    <p className="text-2xl font-bold text-white mt-2">₺{selectedPackage.price.replace('.00', '')}</p>
+                    <p className="text-2xl font-bold text-white mt-2">
+                      {new Intl.NumberFormat('tr-TR', {
+                        style: 'currency',
+                        currency: 'TRY'
+                      }).format(parseInt(selectedPackage.price))}
+                    </p>
                   </div>
                 </div>
               </div>
