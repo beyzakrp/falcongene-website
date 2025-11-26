@@ -101,7 +101,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 - Uses PaynKolay sandbox environment
 - 3D Secure shows test emulator
 - No real money charged
-- Test cards work (see `PAYNKOLAY_PRODUCTION.md`)
+- Test cards work (see `PRODUCTION_CHECKLIST.md`)
 
 ### Production Mode
 - Real payment processing
@@ -109,7 +109,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 - Real money charged
 - Requires domain registration with PaynKolay
 
-**To switch to production mode**, see: [`DEPLOYMENT_CHECKLIST.md`](./DEPLOYMENT_CHECKLIST.md)
+**To switch to production mode**, see: [`PRODUCTION_CHECKLIST.md`](./PRODUCTION_CHECKLIST.md)
 
 ## 📱 Features Overview
 
@@ -159,8 +159,8 @@ falcongene-website/
 4. Deploy!
 
 **Important:** Before deploying to production:
-- Read [`PAYNKOLAY_PRODUCTION.md`](./PAYNKOLAY_PRODUCTION.md)
-- Complete [`DEPLOYMENT_CHECKLIST.md`](./DEPLOYMENT_CHECKLIST.md)
+- Complete [`PRODUCTION_CHECKLIST.md`](./PRODUCTION_CHECKLIST.md)
+- Review [`PRODUCTION_READY.md`](./PRODUCTION_READY.md)
 - Contact PaynKolay to register your domain
 
 ### Manual Deployment
@@ -172,8 +172,8 @@ npm start
 
 ## 📚 Documentation
 
-- [PaynKolay Production Guide](./PAYNKOLAY_PRODUCTION.md) - How to switch from test to production
-- [Deployment Checklist](./DEPLOYMENT_CHECKLIST.md) - Pre-deployment tasks
+- [PaynKolay Production Checklist](./PRODUCTION_CHECKLIST.md) - Test vs production configuration and go-live steps
+- [Production Ready](./PRODUCTION_READY.md) - Final validation items
 - [EmailJS Setup](./EMAILJS_SETUP.md) - Email configuration guide
 
 ## 🔒 Security
@@ -221,6 +221,6 @@ Private - All rights reserved
 
 ---
 
-**Current Status:** ✅ Ready for Production (Pending PaynKolay domain registration)  
+**Current Status:** 🔒 Production hardening required (rotate PaynKolay prod keys before go-live)  
 **Environment:** 🧪 Test Mode (Sandbox)  
-**Last Updated:** October 26, 2025
+**Last Updated:** November 25, 2025

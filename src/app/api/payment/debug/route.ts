@@ -3,15 +3,26 @@ import { getPaynKolayConfig } from '@/lib/paynkolay';
 
 export async function GET(request: NextRequest) {
   try {
+    const nkEnvironment = process.env.NKOLAY_ENVIRONMENT || 'test';
+    const isProdRuntime = process.env.NODE_ENV === 'production';
+    
+    // Never expose gateway details in production
+    if (nkEnvironment === 'production' || isProdRuntime) {
+      return NextResponse.json(
+        { error: 'Not found' },
+        { status: 404 }
+      );
+    }
+
     const config = getPaynKolayConfig();
     
     // Debug bilgilerini döndür (hassas bilgileri gizle)
     const debugInfo = {
       environment: config.environment,
-      sx: config.sx,
+      hasSx: !!config.sx,
+      hasSecret: !!config.secret,
       sharedPaymentUrl: config.sharedPaymentUrl,
       paymentUrl: config.paymentUrl,
-      hasSecret: !!config.secret,
       timestamp: new Date().toISOString()
     };
 

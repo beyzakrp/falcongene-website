@@ -10,10 +10,7 @@ export default function HakkimizdaPage() {
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#0D1B2A] via-[#153656] to-[#2C5276] text-white">
         <div className="mx-auto max-w-6xl px-6 pt-28 pb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
             className="text-center"
           >
             <h1 className="font-display text-4xl md:text-5xl font-semibold mb-4">
@@ -22,25 +19,16 @@ export default function HakkimizdaPage() {
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Genetik analizlerde yenilikçi çözümler sunan FALCONGENE, bilim ve teknolojinin gücüyle sağlık alanında fark yaratıyor.
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Content */}
       <div className="mx-auto max-w-6xl px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-16"
-        >
+       
           {/* Şirket Hakkında */}
           <section className="mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[#0D1B2A] mb-6">FALCONGENE Hakkında</h2>
@@ -69,26 +57,18 @@ export default function HakkimizdaPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </section>
 
           {/* Misyon */}
           <section className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <motion.h2 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+              <h2 
                 className="text-3xl font-bold text-[#0D1B2A] mb-6"
               >
                 Misyonumuz
-              </motion.h2>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+              </h2>
+              <div
                 className="space-y-4 text-gray-700 leading-relaxed"
               >
                 <p>
@@ -105,13 +85,9 @@ export default function HakkimizdaPage() {
                     FalconGene, ilerideki dönemlerde sektördeki yenilikleri takip ederek, teknolojik gelişmeleri benimseyip sürekli kendisini güncelleyerek, istihdam yaratma misyonunu sürdürmeyi ve genetik test hizmetlerinde <strong>dünya genelinde öncü bir konum</strong> elde etmeyi amaçlamaktadır.
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+            <div
               className="relative h-80 rounded-2xl overflow-hidden shadow-lg"
             >
               <Image
@@ -133,16 +109,12 @@ export default function HakkimizdaPage() {
                 </div>
                 <p className="text-white/90 text-sm leading-relaxed">1.100 m² laboratuvar alanında, son teknoloji NGS cihazları ile 70+ uzman çalışanımızla genetik analizler gerçekleştiriyoruz</p>
               </div>
-            </motion.div>
+            </div>
           </section>
 
           {/* Vizyonumuz */}
           <section className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+            <div
               className="relative h-80 rounded-2xl overflow-hidden shadow-lg order-2 lg:order-1"
             >
               <Image
@@ -164,22 +136,14 @@ export default function HakkimizdaPage() {
                 </div>
                 <p className="text-white/90 text-sm leading-relaxed">80.000+ NGS testi deneyimimizle Türkiye'de genetik test alanının öncüsü olmaya devam ediyoruz</p>
               </div>
-            </motion.div>
+            </div>
             <div className="order-1 lg:order-2">
-              <motion.h2 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+              <h2
                 className="text-3xl font-bold text-[#0D1B2A] mb-6"
               >
                 Vizyonumuz
-              </motion.h2>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+              </h2>
+              <div
                 className="space-y-4 text-gray-700 leading-relaxed"
               >
                 <p>
@@ -193,24 +157,20 @@ export default function HakkimizdaPage() {
                     Türkiye'nin sağlık sektöründeki teknolojik dönüşümü destekleyerek, genetik testlerin günlük yaşamın bir parçası haline gelmesine öncülük etmeyi ve <strong>ülkemizi uluslararası alanda temsil etmeyi</strong> vizyonunun merkezine koymaktadır.
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
 
           {/* Değerlerimiz */}
           <section className="py-16 bg-gray-50 rounded-3xl px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[#0D1B2A] mb-4">Değerlerimiz</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Çalışmalarımızda bizi yönlendiren temel değerler ve ilkelerimiz
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
@@ -251,12 +211,8 @@ export default function HakkimizdaPage() {
                   description: "Genetik testleri herkese ulaştırmak için çalışıyoruz"
                 }
               ].map((value, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
                 >
                   <div className="w-12 h-12 bg-[#D6F5E3] rounded-lg flex items-center justify-center text-[#0D1B2A] mb-4">
@@ -264,18 +220,14 @@ export default function HakkimizdaPage() {
                   </div>
                   <h3 className="font-semibold text-[#0D1B2A] mb-2">{value.title}</h3>
                   <p className="text-gray-600 text-sm">{value.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </section>
 
           {/* Laboratuvar Hakkında */}
           <section className="mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[#0D1B2A] mb-6">Laboratuvarımız: GENOKS</h2>
@@ -283,15 +235,11 @@ export default function HakkimizdaPage() {
                 2008 yılından bu yana genetik araştırmaları alanında faaliyet gösteren, 
                 Türkiye'nin önde gelen genetik test laboratuvarlarından biri olan GENOKS ile işbirlği yapıyoruz.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Sol Kolon - Geçmiş ve Deneyim */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+              <div
                 className="space-y-6"
               >
                 <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8">
@@ -345,14 +293,10 @@ export default function HakkimizdaPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Sağ Kolon - Teknoloji ve Hizmetler */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+              <div
                 className="space-y-6"
               >
                 <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-3xl p-8">
@@ -417,24 +361,20 @@ export default function HakkimizdaPage() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
 
           {/* Sertifikalar ve Kalite Güvencesi */}
           <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl px-8 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+            <div
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-[#0D1B2A] mb-4">Sertifikalar ve Akreditasyonlar</h2>
               <p className="text-gray-600 max-w-3xl mx-auto">
                 Uluslararası standartlarda kaliteli ve güvenilir hizmet sunmak için sahip olduğumuz sertifikalar ve akreditasyonlar
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
@@ -475,12 +415,7 @@ export default function HakkimizdaPage() {
                   color: "from-purple-400 to-violet-500"
                 }
               ].map((cert, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                <div
                   className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
                 >
                   <div className={`w-16 h-16 bg-gradient-to-r ${cert.color} rounded-lg flex items-center justify-center text-2xl mb-4 mx-auto`}>
@@ -488,18 +423,12 @@ export default function HakkimizdaPage() {
                   </div>
                   <h3 className="font-semibold text-[#0D1B2A] mb-2 text-center">{cert.title}</h3>
                   <p className="text-gray-600 text-sm text-center leading-relaxed">{cert.desc}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             <div className="mt-12 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-2xl p-8 border border-blue-200"
-              >
+              <div className="bg-white rounded-2xl p-8 border border-blue-200">
                 <h3 className="text-xl font-bold text-[#0D1B2A] mb-4">Kalite Güvencemiz</h3>
                 <p className="text-gray-700 leading-relaxed max-w-4xl mx-auto">
                   Tüm bu uluslararası standart ve sertifikalarla, genetik test hizmetlerimizin 
@@ -507,18 +436,12 @@ export default function HakkimizdaPage() {
                   sunulduğunu garanti ediyoruz. 80.000'den fazla başarılı NGS testi deneyimimiz ve 
                   sürekli kalite kontrol süreçlerimizle size en doğru sonuçları sunuyoruz.
                 </p>
-              </motion.div>
+              </div>
             </div>
           </section>
 
           {/* İletişim CTA */}
           <section className="text-center py-16 bg-gradient-to-r from-[#0D1B2A] to-[#2C5276] text-white rounded-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
               <h2 className="text-3xl font-bold mb-4">
                 Daha Fazla Bilgi Almak İster misiniz?
               </h2>
@@ -540,11 +463,10 @@ export default function HakkimizdaPage() {
                   Testlerimizi İnceleyin
                 </Link>
               </div>
-            </motion.div>
           </section>
 
           {/* Back to Top */}
-          <div className="text-center pb-8">
+          <div className="text-center pt-8">
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="inline-flex items-center gap-2 text-[#0D1B2A] hover:text-blue-600 font-medium"
@@ -555,7 +477,7 @@ export default function HakkimizdaPage() {
               Başa Dön
             </button>
           </div>
-        </motion.div>
+        
       </div>
     </div>
   );

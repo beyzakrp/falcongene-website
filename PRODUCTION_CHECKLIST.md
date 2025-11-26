@@ -2,6 +2,8 @@
 
 Bu doküman PaynKolay entegrasyonunun production'a çıkarılması için gerekli adımları içerir.
 
+> ⚠️ Gerçek üretim anahtarları bu dosyada tutulmamalıdır. Bu dokümanda daha önce yer alan PROD SX/SECRET değerleri artık güvenli kabul edilmemelidir. PaynKolay panelinden yeni anahtarlar oluşturup Vercel environment değişkenleriyle güncelleyin.
+
 ## 🔧 Environment Değişkenleri
 
 ### Production Environment Ayarları
@@ -10,8 +12,8 @@ Bu doküman PaynKolay entegrasyonunun production'a çıkarılması için gerekli
 NKOLAY_ENVIRONMENT=production
 
 # Production PaynKolay Credentials
-NKOLAY_PROD_SX=135623618|xuKiEQOShZd7zQh8gVEs6QpRyxPUsTg8TWV+JL7JUy/wmSD/mj6hMqG58grCLA9CVqzLBalRmRf+Ud5cy3kwt8zZ6Ljiij+/PWWI1FDyYeipL9NGEDtXWwpTXB2M3eNVxSl3+A==
-NKOLAY_PROD_SECRET=_XmF1jyEAHsLYELO6favP
+NKOLAY_PROD_SX=<paynkolay_prod_sx>         # Vercel env değişkeni, repoya asla yazmayın
+NKOLAY_PROD_SECRET=<paynkolay_prod_secret> # Vercel env değişkeni, repoya asla yazmayın
 
 # Vercel Domain
 VERCEL_URL=yourdomainhere.com

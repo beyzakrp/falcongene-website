@@ -192,11 +192,7 @@ export default function TestlerPage() {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
           className="text-center mt-16 p-12 bg-gradient-to-br from-[#0D1B2A] to-[#2C5276] rounded-3xl text-white"
         >
           <h3 className="text-3xl font-bold mb-4">Genetik Potansiyelinizi Keşfetmeye Hazır mısınız?</h3>
@@ -217,7 +213,7 @@ export default function TestlerPage() {
               Uzmanlarımızla İletişime Geç
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

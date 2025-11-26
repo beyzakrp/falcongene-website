@@ -76,11 +76,7 @@ export default function TestsGrid() {
     <section id="tests" className="relative py-20 sm:py-28 bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8 }}
+        <div 
           className="mb-16 text-center"
         >
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#1976D3] to-[#4E7CA8] text-white text-sm font-semibold mb-6">
@@ -92,19 +88,14 @@ export default function TestsGrid() {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Sağlığınızı daha iyi yönetmenize, potansiyelinizi en üst düzeye çıkarmanıza yardımcı olan bilimsel temelli test paketlerimiz
           </p>
-        </motion.div>
+        </div>
 
         {/* Tests Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {tests.map((test, index) => (
-            <motion.div
-              key={test.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+            <div
               className={`group relative overflow-hidden rounded-3xl bg-white border-2 ${test.borderColor} hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}
-            >
+              key={test.id}>
               {/* Image Header */}
               <div className="relative h-48 overflow-hidden">
                 <Image
@@ -164,7 +155,7 @@ export default function TestsGrid() {
 
               {/* Hover Effect */}
               <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${test.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -201,6 +192,7 @@ export default function TestsGrid() {
         </motion.div>
 
         {/* Features Overview */}
+        {/*
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -239,6 +231,8 @@ export default function TestsGrid() {
             </motion.div>
           ))}
         </motion.div>
+        */}
+        
       </div>
     </section>
   );

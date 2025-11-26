@@ -16,7 +16,7 @@ export default function Home() {
       <TestsGrid />
       <ReportPreview />
       <Pricing />
-      <CTASection />
+      {/* <CTASection /> */}
     </>
   );
 }
