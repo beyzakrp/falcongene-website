@@ -86,8 +86,9 @@ export default function ProfilePage() {
         newPassword: '',
         confirmPassword: ''
       });
-    } catch (error: any) {
-      setMessage({ type: 'error', text: 'Şifre güncellenirken bir hata oluştu. Tekrar giriş yapmayı deneyin.' });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Şifre güncellenirken bir hata oluştu. Tekrar giriş yapmayı deneyin.';
+      setMessage({ type: 'error', text: errorMessage });
     } finally {
       setPasswordLoading(false);
     }

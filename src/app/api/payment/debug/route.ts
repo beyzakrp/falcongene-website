@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPaynKolayConfig } from '@/lib/paynkolay';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const nkEnvironment = process.env.NKOLAY_ENVIRONMENT || 'test';
     const isProdRuntime = process.env.NODE_ENV === 'production';

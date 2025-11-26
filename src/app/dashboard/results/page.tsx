@@ -14,7 +14,7 @@ interface TestResult {
   packageType: string;
   status: 'processing' | 'ready' | 'delivered';
   reportUrl?: string;
-  completedAt?: any;
+  completedAt?: Date | { seconds: number; nanoseconds: number };
   customerInfo: {
     name: string;
     email: string;
@@ -24,7 +24,7 @@ interface TestResult {
 export default function ResultsPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
-  const [results, setResults] = useState<TestResult[]>([]);
+    const [results, setResults] = useState<TestResult[]>([]);
   const [resultsLoading, setResultsLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +49,16 @@ export default function ResultsPage() {
         .map((doc) => ({
           id: doc.id,
           ...doc.data()
-        })) as any[];
+        })) as Array<{
+          id: string;
+          clientRefCode?: string;
+          testType?: string;
+          packageType?: string;
+          orderStatus?: string;
+          updatedAt?: { toDate: () => Date };
+          customerInfo?: { name: string; email: string };
+          [key: string]: unknown;
+        }>;
       
       // Convert orders to test results format
       const testResults: TestResult[] = orders.map(order => ({
@@ -80,9 +89,9 @@ export default function ResultsPage() {
     return () => unsubscribe();
   }, [user]);
 
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Date | { seconds: number; nanoseconds: number } | undefined) => {
     if (!timestamp) return '';
-    const date = timestamp instanceof Date ? timestamp : new Date(timestamp);
+    const date = timestamp instanceof Date ? timestamp : 'seconds' in timestamp ? new Date(timestamp.seconds * 1000) : new Date(timestamp);
     return date.toLocaleDateString('tr-TR', {
       year: 'numeric',
       month: 'long',

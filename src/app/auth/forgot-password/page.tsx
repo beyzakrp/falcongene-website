@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
       } else {
         setError(getErrorMessage(result.error));
       }
-    } catch (err) {
+    } catch {
       setError('Beklenmeyen bir hata oluştu');
     } finally {
       setLoading(false);

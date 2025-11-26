@@ -1,5 +1,8 @@
 import { FirebaseError } from 'firebase/app';
-import { Timestamp, DocumentData, OrderByDirection } from 'firebase/firestore';
+import type {
+  DocumentReference,
+  DocumentData
+} from 'firebase/firestore';
 
 export interface AuthResponse {
   success: boolean;

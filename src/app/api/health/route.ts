@@ -14,7 +14,7 @@ export async function GET() {
       try {
         paynkolayConfig = getPaynKolayConfig();
         paynkolayStatus = 'healthy';
-      } catch (error) {
+      } catch {
         paynkolayStatus = 'configuration_error';
       }
     } else {
@@ -28,7 +28,7 @@ export async function GET() {
       if (!db.app.options.projectId) {
         firebaseStatus = 'configuration_error';
       }
-    } catch (error) {
+    } catch {
       firebaseStatus = 'connection_error';
     }
 

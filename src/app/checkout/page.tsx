@@ -39,8 +39,8 @@ function CheckoutContent() {
   const [checkoutTotal, setCheckoutTotal] = useState(state.total);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
-  const [userAddresses, setUserAddresses] = useState<Address[]>([]);
-  const [newAddress, setNewAddress] = useState<Partial<Address>>({
+  const [_userAddresses, setUserAddresses] = useState<Address[]>([]);
+  const [_newAddress, _setNewAddress] = useState<Partial<Address>>({
     title: '',
     firstName: '',
     lastName: '',
@@ -131,15 +131,13 @@ function CheckoutContent() {
     setCurrentStep(2); // Adres adımına geç
   };
 
-  const handleAddressSelect = (address: Address) => {
-    setSelectedAddress(address);
-    nextStep(); // Ödeme adımına geç
   };
 
-  const handleNewAddressSubmit = (address: Address) => {
-    setSelectedAddress(address);
-    nextStep(); // Ödeme adımına geç
-  };
+  // const handleAddressSelect = (index: number) => {
+  //   setSelectedAddressIndex(index);
+  // };
+
+  const handleNewAddressSubmit = () => {
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('tr-TR', {
@@ -183,19 +181,19 @@ function CheckoutContent() {
     router.push('/payment/fail');
   };
 
-  const paymentData = {
-    amount: checkoutTotal,
-    items: checkoutItems,
-    customerInfo: selectedAddress ? {
-      email: selectedAddress.email,
-      phone: selectedAddress.phone,
-      name: `${selectedAddress.firstName} ${selectedAddress.lastName}`
-    } : {
-      email: user?.email || 'guest@example.com',
-      phone: '+905551234567',
-      name: user?.displayName || 'Misafir Kullanıcı'
-    }
-  };
+  // const paymentData = {
+  //   amount: checkoutTotal,
+  //   items: checkoutItems,
+  //   customerInfo: selectedAddress ? {
+  //     email: selectedAddress.email,
+  //     phone: selectedAddress.phone,
+  //     name: `${selectedAddress.firstName} ${selectedAddress.lastName}`
+  //   } : {
+  //     email: user?.email || 'guest@example.com',
+  //     phone: '+905551234567',
+  //     name: user?.displayName || 'Misafir Kullanıcı'
+  //   }
+  // };
 
   if (checkoutItems.length === 0) {
     return (
@@ -472,7 +470,7 @@ function CheckoutContent() {
               
               {/* Ürünler */}
               <div className="space-y-6 mb-8">
-                {checkoutItems.map((item, index) => (
+                {checkoutItems.map((item) => (
                   <div key={item.id} className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl border border-slate-700">
                     <div className="flex items-center">
                       <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">

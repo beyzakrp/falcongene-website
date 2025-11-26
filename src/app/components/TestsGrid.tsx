@@ -92,7 +92,7 @@ export default function TestsGrid() {
 
         {/* Tests Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {tests.map((test, index) => (
+          {tests.map((test) => (
             <div
               className={`group relative overflow-hidden rounded-3xl bg-white border-2 ${test.borderColor} hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}
               key={test.id}>

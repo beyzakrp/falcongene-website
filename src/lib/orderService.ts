@@ -75,7 +75,11 @@ export async function createOrder(orderData: Omit<Order, 'id' | 'createdAt' | 'u
     return docRef.id;
   } catch (error) {
     console.error('Error creating order:', error);
-    throw new Error('Sipariş oluşturulurken hata oluştu');
+    throw error instanceof Error ? error : new Error('Failed to create order');
+  }
+}
+
+export async function updateOrderPaymentStatus(orderId: string, status: string) {
   }
 }
 

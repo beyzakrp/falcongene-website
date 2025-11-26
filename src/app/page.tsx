@@ -4,7 +4,6 @@ import StatsSection from "./components/StatsSection";
 import TestsGrid from "./components/TestsGrid";
 import ReportPreview from "./components/ReportPreview";
 import Pricing from "./components/Pricing";
-import CTASection from "./components/CTASection";
 
 export default function Home() {
   return (

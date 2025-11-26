@@ -4,14 +4,9 @@ import React, { useState, useEffect } from 'react';
 import useAuth from '../../lib/useAuth';
 
 interface PaynKolayPaymentProps {
-  amount: string;
-  clientRefCode?: string;
-  onSuccess?: () => void;
-  onError?: (error: string) => void;
-  testType?: string;
-  packageType?: 'basic' | 'premium';
-  packageName?: string;
-}
+  orderId: string;
+  amount: number;
+  firstName: string;
 
 export default function PaynKolayPayment({ 
   amount, 

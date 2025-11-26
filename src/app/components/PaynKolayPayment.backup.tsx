@@ -19,7 +19,6 @@ interface PaynKolayPaymentProps {
   clientRefCode?: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
-  // Sipariş bilgileri
   testType?: string;
   packageType?: 'basic' | 'premium';
   packageName?: string;
@@ -28,8 +27,6 @@ interface PaynKolayPaymentProps {
 export default function PaynKolayPayment({ 
   amount, 
   clientRefCode,
-  onSuccess,
-  onError,
   testType,
   packageType,
   packageName
@@ -47,6 +44,8 @@ export default function PaynKolayPayment({
   
   const [customerEmail, setCustomerEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   const { user } = useAuth();
 
   // Kullanıcı giriş yapmış ise email ve isim alanlarını otomatik doldur
@@ -181,7 +180,7 @@ export default function PaynKolayPayment({
     } catch (error) {
       console.error('Payment error:', error);
       setLoading(false);
-      onError?.(error instanceof Error ? error.message : 'Payment failed');
+      setError(error instanceof Error ? error.message : 'Payment failed');
     }
   };
 

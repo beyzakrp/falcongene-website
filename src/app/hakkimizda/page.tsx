@@ -1,6 +1,4 @@
 "use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -414,8 +412,9 @@ export default function HakkimizdaPage() {
                   icon: "⭐",
                   color: "from-purple-400 to-violet-500"
                 }
-              ].map((cert, index) => (
+              ].map((cert) => (
                 <div
+                  key={cert.title}
                   className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
                 >
                   <div className={`w-16 h-16 bg-gradient-to-r ${cert.color} rounded-lg flex items-center justify-center text-2xl mb-4 mx-auto`}>
